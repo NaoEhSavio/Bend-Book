@@ -21,23 +21,20 @@ There are numbers
 ```
 
 Char
-todo
+
+```py
+'x'
+```
+
+A Character is surrounded with '
 
 String
 
-todo
+```py
+"Hello, World!"
+```
 
-### Types
-
-todo
-
-### Object
-
-todo
-
-##### Open
-
-todo
+A String literal is surrounded with ".
 
 Tuples can contain 2 or more elements. they are separated by `,`.
 
@@ -81,10 +78,10 @@ Some math
 10 %  3 => 1    # REM
 10 >> 1 => 5    # SHR
 10 << 1 => 20   # SHL
-10 ** 2 => 20.0 # POW
+10 ** 2 => 100.0 # POW
 ```
 
-In Bend the operator `**` is exclusive to float.
+- In Bend the operator `**` is exclusive to float.
 
 There are also boolean operators: `&`, `|` and `^`.
 
@@ -94,7 +91,7 @@ There are also boolean operators: `&`, `|` and `^`.
 1 ^ 1 => 0 # false # XOR
 ```
 
-<!-- These operators expect a boolean as their first argument. -->
+- In Bend the boolean operators is exclusive to Int and Uint.
 
 <!-- All values except `False`, `Nil`, `None` and `Empty` will evaluate to O. -->
 
@@ -115,6 +112,41 @@ This enables building collections of mixed types:
 While there is an overall order of all data types,
 to quote Joe Armstrong on this: "The actual order is not important,
 but that a total ordering is well defined is important." -->
+
+### Type
+
+Defines an algebraic data type.
+
+- Type names must be unique, and should have at least one constructor.
+  - Each constructor is defined by a name followed by its fields.
+
+```py
+type Option:
+  Some { value }
+  None
+
+type Map:
+  Node { value, ~left, ~right }
+  Leaf
+```
+
+- The `~` notation indicates a recursive field.
+
+The constructor names inherit the name of their types and become functions `Map/Node` and `Map/Leaf` The exact function they become depends on the encoding.
+
+### Object
+
+Defines a type with a single constructor (like a struct, a record or a class).
+
+```py
+object Pair { fst, snd }
+
+object Function { name, args, body }
+
+object Vec { len, data }
+```
+
+The constructor created from this definition has the same name as the type.
 
 ## Control Flow
 
