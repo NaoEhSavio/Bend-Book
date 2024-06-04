@@ -14,6 +14,9 @@
 <!-- - [Introduction]() -->
 - [Overview]()
 - [Logic in Bend]()
+  - [Variables]()
+  - [Numbers]()
+  - [Comments]()
   - [Tail Recursion]()
 - [Data Structures]()
   - [type]()
