@@ -145,7 +145,23 @@ The constructor created from this definition has the same name as the type.
 
 ## Functions
 
- todo
+Defines a top level function.
+use `def` to define your functions.
+
+```py
+def add(x, y):
+  result = x + y
+  return result
+
+def main:
+  return add(40, 2)
+```
+
+A function definition is composed by a name, a sequence of parameters and a body.
+
+A top-level name can be anything matching the regex `[A-Za-z0-9_.-/]+`, except it can't have `__` (used for generated names) or start with `//`.
+
+The last statement of each function must either be a return or a selection statement (`if`, `switch`, `match`, `fold`) where all branches `return`.
 
 ## Control Flow
 
@@ -200,7 +216,7 @@ switch condition:
 
 Remember pattern matching? Many control-flow structures in Bend rely on it.
 
-Match allows us to compare a value against many patterns.
+`match` allows us to compare a value against many patterns.
 the cases must be the constructor names of the matching value.
 
 ```py
@@ -213,13 +229,67 @@ match x:
     return 0
 ```
 
-### Fold
+A `fold` statement. Reduces the given value with the given match cases.
 
-todo
+```py
+fold x = Tree/leaf:
+  case Tree/node:
+    return x.value + x.left + x.right
+  case Tree/leaf:
+    return 0
+```
 
-### Bend
+It is possible to bind a variable name to the matching value. Just like in match, the fields are bound to matched_var.field_name.
 
-todo
+For fields notated with ~ in the type definition, the fold function is called implicitly.
+
+It is equivalent to the inline recursive function:
+
+```py
+def fold(x):
+  match x:
+    case Tree/Node:
+      return x.value + fold(x.left) + fold(x.right)
+    case Tree/Leaf:
+      return 0
+...
+fold(Tree/Leaf)
+```
+
+Bend can be used to create recursive data structures:
+
+```py
+bend x = 0:
+  when x < 10:
+    left = fork(x + 1)
+    right = fork(x + 1)
+    y = Tree/Node(left, right)
+  else:
+    y = Tree/Leaf(x)
+```
+
+Which binds a variable to the return of an inline recursive function. The function fork is available inside the when arm of the bend and calls it recursively.
+
+It is possible to pass multiple state variables, which can be initialized:
+
+```py
+bend x = 1, y = 2 ...:
+  when condition(x, y, ...):
+    ...
+```
+
+When calling fork, the function must receive the same number of arguments as the number of state variables.
+
+It is equivalent to this inline recursive function:
+
+```py
+def bend(x, y, ...):
+  if condition(x, y, ...):
+    ...
+    return ... bend(x, y, ...) ...
+  else:
+    return ...
+```
 
 ## More Functions
 
