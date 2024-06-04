@@ -209,7 +209,7 @@ switch condition:
   case 0:
     # else branch
     return 1
-  case _:
+  case _: # default
     # then branch
     return 0
 ```
