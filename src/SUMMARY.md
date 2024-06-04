@@ -6,9 +6,9 @@
 
 - [Getting Started]()
   - [Terminal](Guide/Terminal.md)
-  - [About bend](/Guide/About.md)
-  - [Installation](/Guide/Instalation.md)
-  - [Hello World!](/Guide/HelloWord.md)
+  - [About bend](Guide/About.md)
+  - [Installation](Guide/Instalation.md)
+  - [Hello World!](Guide/HelloWord.md)
   - [BPM]()
 
 # Book

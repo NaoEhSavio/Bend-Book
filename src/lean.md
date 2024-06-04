@@ -20,6 +20,13 @@ There are numbers
 1.4  # Floating point (24 bits)
 ```
 
+Char
+todo
+
+String
+
+todo
+
 ### Types
 
 todo
@@ -188,6 +195,16 @@ todo
 ### Bend
 
 todo
+
+## Functions
+
+todo
+
+## IO
+
+todo
+
+## Concurrency
 
 <!-- 
 case {:one, :two} do
