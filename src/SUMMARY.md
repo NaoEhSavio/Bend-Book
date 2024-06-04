@@ -5,6 +5,7 @@
 # User Guide
 
 - [Getting Started](/src/Guide/)
+  - [Terminal](/src/Guide/Terminal.md)
   - [About bend](/src/Guide/About.md)
   - [Installation](/src/Guide/Instalation.md)
   - [Hello World!](/src/Guide/HelloWord.md)
