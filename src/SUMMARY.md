@@ -2,7 +2,7 @@
 
 [Introduction](README.md)
 
-# User Guide
+## User Guide
 
 - [Getting Started]()
   - [Terminal](Guide/Terminal.md)
@@ -11,7 +11,7 @@
   - [Hello World!](Guide/HelloWord.md)
   - [BPM]()
 
-# Book
+## Book
 
 <!-- - [Introduction]() -->
 - [Overview]()
