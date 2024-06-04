@@ -4,7 +4,7 @@
 
 ## User Guide
 
-- [Getting Started]()
+- [Getting Started](Start.md)
   - [Terminal](Guide/Terminal.md)
   - [About bend](Guide/About.md)
   - [Installation](Guide/Instalation.md)
