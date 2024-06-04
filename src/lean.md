@@ -60,6 +60,18 @@ Lists that are implemented as lists. they are separated by `,`.
 [1,2,3] # list
 ```
 
+list comprehensions
+
+```py
+[x + 1 for x in [1,2,3]] # Result: [2, 3, 4]
+```
+
+with a conditional
+
+```py
+[x * 2 for x in [1,2,3] if x > 2] # Result: [6, 8]
+```
+
 ## Operators
 
 Some math
@@ -87,9 +99,7 @@ There are also boolean operators: `&`, `|` and `^`.
 
 - In Bend the boolean operators is exclusive to `i24` and `u24`.
 
-<!-- All values except `False`, `Nil`, `None` and `Empty` will evaluate to O. -->
-
-For comparisons we have: `==`, `!=`, `<` and `>`
+For comparisons we have: `==`, `!=`, `<` and `>`, must return a `u24`.
 
 ```py
 1.0 == 1.0 => 1 # true  # EQ
@@ -97,21 +107,12 @@ For comparisons we have: `==`, `!=`, `<` and `>`
 -1  <  +2  => 1 # true  # LT
 1   >   2  => 0 # false # GT
 ```
-
-- Return `u24`
   
-<!-- Elixir operators are strict in their arguments, with the exception
-of comparison operators that work across different data types:
+<!-- All values except `False`, `Nil`, `None` and `Empty` will evaluate to O. -->
 
-This enables building collections of mixed types:
+### Datatypes
 
-While there is an overall order of all data types,
-to quote Joe Armstrong on this: "The actual order is not important,
-but that a total ordering is well defined is important." -->
-
-### Type
-
-Defines an algebraic data type.
+Algebraic data type
 
 - Type names must be unique, and should have at least one constructor.
   - Each constructor is defined by a name followed by its fields.
@@ -127,10 +128,8 @@ type Map:
 ```
 
 - The `~` notation indicates a recursive field.
-
-The constructor names inherit the name of their types and become functions `Map/Node` and `Map/Leaf` The exact function they become depends on the encoding.
-
-### Object
+  - The constructor names inherit the name of their types and become functions `Map/Node` and `Map/Leaf`.
+  - The exact function they become depends on the encoding.
 
 Defines a type with a single constructor (like a struct, a record or a class).
 
@@ -150,8 +149,6 @@ The constructor created from this definition has the same name as the type.
 
 ## Control Flow
 
-### IF
-
 ```py
 if condition:
   return # ...then
@@ -160,7 +157,7 @@ else:
 ```
 
 - A branching statement where `else` is mandatory.
-  - The condition must return a `u24` number, where 0 will run the `else` branch and any other value will return the `then`.
+  - The condition must return a `u24`, where 0 will run the `else` branch and any other value will return the `then`.
 
 It is possible to make if-chains using `elif`:
 
@@ -174,8 +171,6 @@ elif condition3:
 else:
   return 3
 ```
-
-### Switch
 
 Switches may only be used with native numbers values. lets us check for many conditions at the same time.
 
@@ -205,9 +200,7 @@ switch condition:
 
 Remember pattern matching? Many control-flow structures in Bend rely on it.
 
-### Match
-
-allows us to compare a value against many patterns.
+Match allows us to compare a value against many patterns.
 the cases must be the constructor names of the matching value.
 
 ```py
