@@ -252,23 +252,35 @@ def main():
   fold(Map/Leaf)
 ```
 
-`bend` can be used to create recursive data structures:
+Called `for` in some languages:
 
 ```py
-bend x:
-  when condition:   
-    fork()  
-    #  
-  else:            
-    # 
-return # 
+# C, C++, JS and etc
+for (initialization; condition; increment) {
+  # code block to be executed
+}
+# Python  
+for item in iterable:
+    # code block to be executed
+```
+`for` in Bend:
+
+A `bend` can be used to create recursive data structures:
+
+```py
+bend initialization: # init branch  
+  when condition:    # when branch 
+    # code block to be executed
+    fork(increment) # optional
+  else:              # end branch        
+    # block of code to be executed a final bend
 ```
 
 - It is possible to pass multiple state variables, which can be initialized:
 
-When calling fork, the function must receive the same number of arguments as the number of state variables.
+When calling `fork`, the function must receive the same number of arguments as the number of state variables.
 
-Which binds a variable to the return of an inline recursive function. The function fork is available inside the when arm of the bend and calls it recursively.
+Which binds a variable to the return of an inline recursive function. The function `fork` is available inside the when arm of the bend and calls it recursively.
 
 It is equivalent to this inline recursive function:
 
