@@ -1,14 +1,10 @@
-<!-- Elixir is a modern functional language built on top of the Erlang VM. It’s fully compatible with Erlang, but features a more standard syntax and many more features. -->
+
 ```py
 # Single line comments start with a number symbol.
 
 # There's no multi-line comment,
 # but you can stack multiple comments.
 ```
-<!-- To use the Elixir shell use the `iex` command.
-Compile your modules with the `elixirc` command.
-
-Both should be in your path if you installed Elixir correctly. -->
 
 ## Basic types
 
@@ -157,11 +153,9 @@ def main:
   return add(40, 2)
 ```
 
-A function definition is composed by a name, a sequence of parameters and a body.
-
-A top-level name can be anything matching the regex `[A-Za-z0-9_.-/]+`, except it can't have `__` (used for generated names) or start with `//`.
-
-The last statement of each function must either be a return or a selection statement (`if`, `switch`, `match`, `fold`) where all branches `return`.
+- A function definition is composed by a name, a sequence of parameters and a body.
+  - A top-level name can be anything matching the regex `[A-Za-z0-9_.-/]+`, except it can't have `__` (used for generated names) or start with `//`.
+  - The last statement of each function must either be a return or a selection statement (`if`, `switch`, `match`, `fold`) where all branches `return`.
 
 ## Control Flow
 
@@ -229,6 +223,25 @@ match x:
     return 0
 ```
 
+-- Bend doesn't have loops; it uses recursion instead.
+
+-- Fold (foldl): reduz uma lista a um valor único
+
+-- Fold (foldr): reduz uma lista a um valor único (da direita para a esquerda)
+
+-- You can use foldl or foldr to reduce a list
+-- foldl <fn> <initial value> <list>
+foldl (\x y -> 2*x + y) 4 [1,2,3] -- 43
+
+-- This is the same as
+(2 *(2* (2 * 4 + 1) + 2) + 3)
+
+-- foldl is left-handed, foldr is right-handed
+foldr (\x y -> 2*x + y) 4 [1,2,3] -- 16
+
+-- This is now the same as
+(2 *1 + (2* 2 + (2 * 3 + 4)))
+
 A `fold` statement. Reduces the given value with the given match cases.
 
 ```py
@@ -255,6 +268,9 @@ def fold(x):
 ...
 fold(Tree/Leaf)
 ```
+
+
+
 
 Bend can be used to create recursive data structures:
 
