@@ -255,14 +255,12 @@ def main():
 Called `for` in some languages:
 
 ```py
-# C, C++, JS and etc
+# C, C++, JS ...
 for (initialization; condition; increment) {
   # code block to be executed
 }
-# Python  
-for item in iterable:
-    # code block to be executed
 ```
+
 `for` in Bend:
 
 A `bend` can be used to create recursive data structures:
@@ -277,10 +275,7 @@ bend initialization: # init branch
 ```
 
 - It is possible to pass multiple state variables, which can be initialized:
-
-When calling `fork`, the function must receive the same number of arguments as the number of state variables.
-
-Which binds a variable to the return of an inline recursive function. The function `fork` is available inside the when arm of the bend and calls it recursively.
+  - When calling `fork`, the function must receive the same number of arguments as the number of state variables.
 
 It is equivalent to this inline recursive function:
 
