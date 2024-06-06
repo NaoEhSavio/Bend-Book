@@ -2,19 +2,19 @@
 
 [Introduction](README.md)
 
-# User Guide
+## User Guide
 
-- [Getting Started]()
+- [Getting Started](Start.md)
   - [Terminal](Guide/Terminal.md)
   - [About bend](Guide/About.md)
   - [Installation](Guide/Instalation.md)
   - [Hello World!](Guide/HelloWord.md)
   - [BPM]()
 
-# Book
+## Book
 
 <!-- - [Introduction]() -->
-- [Overview]()
+- [Overview](lean.md)
 - [Logic in Bend]()
   - [Variables]()
   - [Numbers]()
