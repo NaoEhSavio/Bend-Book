@@ -105,41 +105,7 @@ For comparisons we have: `==`, `!=`, `<` and `>`, must return a `u24`.
 ```
   
 <!-- All values except `False`, `Nil`, `None` and `Empty` will evaluate to O. -->
-
-### Datatypes
-
-Algebraic data type
-
-- Type names must be unique, and should have at least one constructor.
-  - Each constructor is defined by a name followed by its fields.
-
-```py
-type Option:
-  Some { value }
-  None
-
-type Map:
-  Node { value, ~left, ~right }
-  Leaf
-```
-
-- The `~` notation indicates a recursive field.
-  - The constructor names inherit the name of their types and become functions `Map/Node` and `Map/Leaf`.
-  - The exact function they become depends on the encoding.
-
-Defines a type with a single constructor (like a struct, a record or a class).
-
-```py
-object Pair { fst, snd }
-
-object Function { name, args, body }
-
-object Vec { len, data }
-```
-
-The constructor created from this definition has the same name as the type.
-
-## Functions
+## Basic Functions
 
 Defines a top level function.
 use `def` to define your functions.
@@ -214,56 +180,45 @@ Remember pattern matching? Many control-flow structures in Bend rely on it.
 the cases must be the constructor names of the matching value.
 
 ```py
-  match x = Option/None:
-    case Option/Some:
-      # This will match and bind `Option/Some`
-      return x.value
-    case Option/None:
-      # This will match and bind `Option/None`
-      return 0
+match variable:
+  case type/constructor1:
+    # This will match and bind `type/constructor1`
+    return variable.field1  
+  case type/constructor2:
+    # This will match and bind `type/constructor2`
+    return variable.value2
+  ...
 ```
-
-Bend doesn't have loops; it uses recursion instead.
 
 A `fold` statement. Reduces the given value with the given match cases.
 
 ```py
-  fold x = Map/Leaf:
-    case Map/Node:
-      return x.value + x.left + x.right
-    case Map/Leaf:
-      return 0
+fold variable:
+  case type/constructor1:
+    return variable.value1 + variable.field1 - variable.field2 ...
+  case type/constructor2:
+    return variable.value2 ...
+  ...
 ```
 
-- You can use fold to reduce a Map
-  - For fields notated with `~` in the type definition, the fold function is called  implicitly.
+- You can use fold to reduce a `type`
+  - For fields notated with `~` in the type definition, the fold function is called implicitly.
 
 It is equivalent to the inline recursive function:
 
 ```py
-def fold(x):
+def fold(x)
   match x:
-    case Map/Node:
-      return x.value + fold(x.left) + fold(x.right)
-    case Map/Leaf:
-      return 0
-
-def main():
-  fold(Map/Leaf)
+    case type/constructor1:
+      return x.value1 + fold(x.field1) - fold(x.field2) ...
+    case type/constructor2:
+      return x.value2 ...
+    ...
 ```
 
-Called `for` in some languages:
+Bend doesn't have loops; it uses recursion instead.
 
-```py
-# C, C++, JS ...
-for (initialization; condition; increment) {
-  # code block to be executed
-}
-```
-
-`for` in Bend:
-
-A `bend` can be used to create recursive data structures:
+`bend` is naturally suited for handling recursive data structures. Unlike traditional loops, `bend` uses recursive calls to repeat operations.
 
 ```py
 bend initialization: # init branch  
@@ -274,8 +229,11 @@ bend initialization: # init branch
     # block of code to be executed a final bend
 ```
 
-- It is possible to pass multiple state variables, which can be initialized:
-  - When calling `fork`, the function must receive the same number of arguments as the number of state variables.
+<!-- `bend` statement is not a loop. -->
+
+- In `bend`, state variables are passed explicitly.
+  - It is possible to pass multiple state variables, which can be initialized.
+  - When calling `fork`, the function must receive the same number of arguments as those passed during initialization.
 
 It is equivalent to this inline recursive function:
 
@@ -288,7 +246,63 @@ def bend(x, y, ...):
     return ...
 ```
 
+Open
+
+```py
+open object: variable
+...
+return object { field1: variable.field1, field2: ... }
+```
+
+- Brings the inner fields of an `object` into scope.
+  - The original variable can still be accessed, but doing so will cause any used fields to be duplicated.
+
+It's equivalent to pattern matching on the `object`, with the restriction that its type must have only one constructor.
+
+```py
+match variable:
+  case object:
+    ...
+```
+
+### Datatypes
+
+Algebraic data type
+
+- Type names must be unique, and should have at least one constructor.
+  - Each constructor is defined by a name followed by its fields.
+
+```py
+type Option:
+  Some { value }
+  None
+
+type Map:
+  Node { value, ~left, ~right }
+  Leaf
+```
+
+- The `~` notation indicates a recursive field.
+  - The constructor names inherit the name of their types and become functions `Map/Node` and `Map/Leaf`.
+  - The exact function they become depends on the encoding.
+
+Defines a type with a single constructor (like a struct, a record or a class).
+
+```py
+object Pair { fst, snd }
+
+object Function { name, args, body }
+
+object Vec { len, data }
+```
+
+The constructor created from this definition has the same name as the type.
+
 ## More Functions
+
+todo
+
+Bind also provides many built-in functions
 
 todo
 
