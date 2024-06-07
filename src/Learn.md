@@ -19,9 +19,9 @@ There are numbers
 There are also binary and hexadecimal.
 
 ```py
-# binary      = 0b100_100_011_101_010_111_100
-# hexadecimal = 0x123_abc
-# hex_signed = -0xbeef
+0b100_100 # binary 
+0x123_abc # hexadecimal 
+-0xbeef   # hex_signed 
 ```  
 
 There are character literal
@@ -80,7 +80,7 @@ Some math
 10 %  3 => 1    # REM
 10 >> 1 => 5    # SHR
 10 << 1 => 20   # SHL
-10 ** 2 => 100.0 # POW
+10.0 ** 2.0 => 100.0 # POW
 ```
 
 - In Bend the operator `**` is exclusive to `f24`.
@@ -214,87 +214,68 @@ Remember pattern matching? Many control-flow structures in Bend rely on it.
 the cases must be the constructor names of the matching value.
 
 ```py
-match x:
-  case Option/Some:
-    # This will match and bind `Option/Some`
-    return x.value
-  case Option/None:
-    # This will match and bind `Option/None`
-    return 0
+  match x = Option/None:
+    case Option/Some:
+      # This will match and bind `Option/Some`
+      return x.value
+    case Option/None:
+      # This will match and bind `Option/None`
+      return 0
 ```
 
--- Bend doesn't have loops; it uses recursion instead.
-
--- Fold (foldl): reduz uma lista a um valor único
-
--- Fold (foldr): reduz uma lista a um valor único (da direita para a esquerda)
-
--- You can use foldl or foldr to reduce a list
--- foldl <fn> <initial value> <list>
-foldl (\x y -> 2*x + y) 4 [1,2,3] -- 43
-
--- This is the same as
-(2 *(2* (2 * 4 + 1) + 2) + 3)
-
--- foldl is left-handed, foldr is right-handed
-foldr (\x y -> 2*x + y) 4 [1,2,3] -- 16
-
--- This is now the same as
-(2 *1 + (2* 2 + (2 * 3 + 4)))
+Bend doesn't have loops; it uses recursion instead.
 
 A `fold` statement. Reduces the given value with the given match cases.
 
 ```py
-fold x = Tree/leaf:
-  case Tree/node:
-    return x.value + x.left + x.right
-  case Tree/leaf:
-    return 0
+  fold x = Map/Leaf:
+    case Map/Node:
+      return x.value + x.left + x.right
+    case Map/Leaf:
+      return 0
 ```
 
-It is possible to bind a variable name to the matching value. Just like in match, the fields are bound to matched_var.field_name.
-
-For fields notated with ~ in the type definition, the fold function is called implicitly.
+- You can use fold to reduce a Map
+  - For fields notated with `~` in the type definition, the fold function is called  implicitly.
 
 It is equivalent to the inline recursive function:
 
 ```py
 def fold(x):
   match x:
-    case Tree/Node:
+    case Map/Node:
       return x.value + fold(x.left) + fold(x.right)
-    case Tree/Leaf:
+    case Map/Leaf:
       return 0
-...
-fold(Tree/Leaf)
+
+def main():
+  fold(Map/Leaf)
 ```
 
-
-
-
-Bend can be used to create recursive data structures:
+Called `for` in some languages:
 
 ```py
-bend x = 0:
-  when x < 10:
-    left = fork(x + 1)
-    right = fork(x + 1)
-    y = Tree/Node(left, right)
-  else:
-    y = Tree/Leaf(x)
+# C, C++, JS ...
+for (initialization; condition; increment) {
+  # code block to be executed
+}
 ```
 
-Which binds a variable to the return of an inline recursive function. The function fork is available inside the when arm of the bend and calls it recursively.
+`for` in Bend:
 
-It is possible to pass multiple state variables, which can be initialized:
+A `bend` can be used to create recursive data structures:
 
 ```py
-bend x = 1, y = 2 ...:
-  when condition(x, y, ...):
-    ...
+bend initialization: # init branch  
+  when condition:    # when branch 
+    # code block to be executed
+    fork(increment) # optional
+  else:              # end branch        
+    # block of code to be executed a final bend
 ```
 
-When calling fork, the function must receive the same number of arguments as the number of state variables.
+- It is possible to pass multiple state variables, which can be initialized:
+  - When calling `fork`, the function must receive the same number of arguments as the number of state variables.
 
 It is equivalent to this inline recursive function:
 
