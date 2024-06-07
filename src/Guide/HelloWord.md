@@ -1,4 +1,4 @@
-# Hello World!
+# Hello World
 
 At this point, `bend` should already be installed on your machine. If not, please go back to the installation and follow the instructions.
 
@@ -42,7 +42,7 @@ bend check hello_world.bend
 
 If there is no return after executing the command, it means your file is ready!
 
-If the code check is correct? So let's run the code.
+If the code check is  correct? So let's run the code.
 
 ### Running the code
 
