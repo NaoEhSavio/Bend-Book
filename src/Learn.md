@@ -70,9 +70,13 @@ Lists that are implemented as lists. they are separated by `,`.
 [x * 2 for x in [1,2,3] if x > 2] # Result: [6, 8]
 ```
 
+Maps
+
+todo
+
 ## Operators
 
-Some math
+Some math, todo
 
 ```py
 10 + 10 => 20   # ADD
@@ -310,4 +314,4 @@ todo
 
 ## IO
 
-todo
+TODO
