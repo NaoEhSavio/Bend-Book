@@ -48,23 +48,25 @@ Tuples can contain 2 or more elements. they are separated by `,`.
 
 ```py
 (1,2) # tuple
+
+# pattern match
+(fst, snd, ...) = ("Hi", 2, ...)
+# fst = "Hi"
+# snd = 2
+# ... = ...
+(fst, snd) = (1, "Hello", ...)
+# fst = 1
+# snd = ("Hello", ...)
 ```
 
 Lists that are implemented as lists. they are separated by `,`.
 
 ```py
 [1,2,3] # list
-```
 
-list comprehensions
-
-```py
+# list comprehensions
 [x + 1 for x in [1,2,3]] # Result: [2, 3, 4]
-```
-
-with a conditional
-
-```py
+# with a conditional
 [x * 2 for x in [1,2,3] if x > 2] # Result: [6, 8]
 ```
 
