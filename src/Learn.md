@@ -70,13 +70,31 @@ Lists that are implemented as lists. they are separated by `,`.
 [x * 2 for x in [1,2,3] if x > 2] # Result: [6, 8]
 ```
 
-Maps
+Map is an efficient binary tree with `u24` keys. It offers O(log n) read and write operations.
 
-todo
+```py
+{ 0: 4, 'c': 2 + 3 , ... } # Map
 
+# pattern match
+map = { 0: "zero", 1: "one", 2: "two", 3: "three" }
+
+# Updating values using keys
+map[0] = "not zero"      # Update the value at key 0
+map[1] = 2               # Update the value at key 1
+map[2] = 3               # Update the value at key 2
+
+# Using keys in operations
+map[3] = map[1] + map[map[1]]  # Use the value at key 1 and the value at key map[1]
+```
+
+- keys can be literals or expressions that evaluate to `u24`.
+  - The values can be of any type, but mixing types can make reasoning about the map harder.
+  
 ## Operators
 
-Some math, todo
+Some math
+
+- Bend supports operations only between identical types of numbers.
 
 ```py
 10 + 10 => 20   # ADD
@@ -108,8 +126,10 @@ For comparisons we have: `==`, `!=`, `<` and `>`, must return a `u24`.
 1   !=  1  => 0 # false # NEQ
 -1  <  +2  => 1 # true  # LT
 1   >   2  => 0 # false # GT
+2   <=  2  => 1 # true  # LTE
+1.0 >= 2.0 => 0 # false # GTE
 ```
-  
+
 <!-- All values except `False`, `Nil`, `None` and `Empty` will evaluate to O. -->
 ## Basic Functions
 
@@ -165,7 +185,7 @@ switch number:
   case 1:
     return 7
   case _: # default
-    return x-2
+    return number - 2
 ```
 
 Use `Switch` instead of nesting many `if` expressions.
@@ -234,8 +254,6 @@ bend initialization: # init branch
   else:              # end branch        
     # block of code to be executed a final bend
 ```
-
-<!-- `bend` statement is not a loop. -->
 
 - In `bend`, state variables are passed explicitly.
   - It is possible to pass multiple state variables, which can be initialized.
