@@ -11,14 +11,14 @@ Bend allows the use of lambdas, adopting notations like Scott and Church, with a
 To define data types using lambdas, we use the assignment notation.
 For example, to define the boolean values `false` and `true`, we use:
 
-```bend
+```js
 false = λf λt f
 true  = λf λt t
 ```
 
 Alternatively, you can use `@` in place of `λ`:
 
-```bend
+```js
 false = @f @t f
 true  = @f @t t
 ```
@@ -31,7 +31,7 @@ Examples of Using Booleans
 Defining the `not` Function
 To define the `not` function using booleans defined by lambdas:
 
-```bend
+```js
 not = λb (b true false)
 ```
 
@@ -44,7 +44,7 @@ and `false` if `b` is `true`.
 
 To define natural numbers using Scott encoding:
 
-```bend
+```js
 Zs =    λz λs z
 Ss = λp λz λs (s p)
 ```
@@ -64,7 +64,7 @@ Scott encoding allows for direct deconstruction of natural numbers, making it ea
 
 To define natural numbers using Church encoding:
 
-```bend
+```js
 Zc =    λz λs z
 Sc = λp λz λs (s (p z s))
 ```
@@ -87,7 +87,7 @@ In summary, while Scott encoding is based on a case and deconstruction approach,
 
 To define the addition of Church-encoded natural numbers:
 
-```bend
+```js
 add = λm λn λz λs (m (n z s) s)
 ```
 
@@ -105,7 +105,7 @@ This results in the application of the successor function m + n times, effective
 
 Example Fibonacci Function
 
-```bend
+```js
 fib = λx switch x {
   0: 0
   1: 1
@@ -129,7 +129,7 @@ Combining Everything
 
 Let's combine the definitions of booleans, natural numbers, and functions in a complete example:
 
-```bend
+```js
 Main =
   let zero    = Zs
   let one     = (Ss Zc)
@@ -147,9 +147,9 @@ Main =
   (fib10)
 ```
 
-The use of the `bend` structure in lambda calculus occurs in the same way as in the equational notation seen earlier.
+The use of the `hs` structure in lambda calculus occurs in the same way as in the equational notation seen earlier.
 
-```bend
+```js
 Exp2 = λn (
   bend x = 0 {
     when (< x n):(
@@ -166,13 +166,13 @@ Exp2 = λn (
 
 It is important to note that the definition of functions in lambda calculus is done similarly to the equational notation, and can be done in a mixed manner.
 
-```bend
+```js
 (Sum1 a b) = (+ a b)
 ```
 
 and
 
-```bend
+```js
 Sum2 = λa λb (+ a b)
 ```
 

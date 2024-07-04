@@ -19,7 +19,7 @@ Bend, based on the HVM (High Order Virtual Machine), is a language that supports
 Here is an example of a traditional recursive function that calculates the factorial
 of a number:
 
-```bend
+```py
 def factorial(n):
   switch n:
     case 0:
@@ -34,7 +34,7 @@ In this version, the multiplication `n * factorial(n - 1)` occurs after the recu
 
 Here is the same function rewritten to use tail recursion:
 
-```bend
+```py
 def factorial_tail(n):
   return factorial_tail_aux(n, 1)
 
@@ -52,7 +52,7 @@ In this version, the recursive call `factorial_tail_aux(n - 1, n * acc)` is the 
 
 Let's create a tail recursive function to calculate the Fibonacci sequence in Bend:
 
-```bend
+```py
 def fib_tail(n):
   return fib_tail_aux(n, 0, 1)
 
@@ -80,7 +80,7 @@ The HVM, which is the basis of Bend, allows efficient execution of recursion due
 
 #### Example of implementation in the HVM
 
-```hvm
+```hs
 (IsNat Z)     = True
 (IsNat (S p)) = (IsNat p)
 ```
@@ -91,9 +91,7 @@ This does not "grow forever" because, in the case `(IsNat Z)`, it reduces direct
 
 Tail recursion is a powerful technique that can lead to more efficient and better-performing programs, especially in languages that support its optimization, such as Bend. By ensuring that the recursive call is the last operation in a function, you allow the compiler or interpreter to optimize execution, saving memory and preventing stack overflow.
 
-### Practical Example in Bend
-
-```bend
+```py
 def main():
   tail_factorial = factorial_tail(5)
   factorial = factorial(5)

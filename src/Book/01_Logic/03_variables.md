@@ -1,4 +1,4 @@
-## Variables in Bend
+# Variables in Bend
 
 Bend allows the use of variables to store values. Variables are declared with an equals sign and can be used anywhere a literal value would be used.
 
@@ -22,7 +22,7 @@ Variables can be reassigned at any time. This allows a variable to change the va
 
 Below is an example that demonstrates the declaration and use of variables in Bend:
 
-```bend
+```py
 def main():
   # Declaring variables of different types
   string = "Hello, World!"              # String

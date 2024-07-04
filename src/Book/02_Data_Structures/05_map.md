@@ -8,7 +8,7 @@ To define a Map in Bend, we use the type keyword. A Map can have two constructor
 
 Example: Defining a Map
 
-```bend
+```rs
 type Map:
   Node { value, ~left, ~right }
   Leaf
@@ -66,7 +66,7 @@ map[3] = map[1] + map[map[1]]  # Uses the value at key 1 and the value at key ma
 
 Keys can be literals or expressions that evaluate to u24. Values can be of any type, but mixing types can make reasoning about the map more difficult.
 
-```bend
+```py
 def main():
   map = { 0: "zero", 1: "one", 2: "two", 3: "three" }
   return map[2] # should return "two"

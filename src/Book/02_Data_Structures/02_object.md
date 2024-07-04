@@ -10,7 +10,7 @@ To define an object in Bend, we use the `object` keyword. The definition of an o
 
 Here are some examples of object definitions:
 
-```bend
+```py
 object Pair { fst, snd }
 
 object Function { name, args, body }
@@ -25,7 +25,7 @@ Example: Defining an Account Object
 
 Let's define an Account object with two fields: number and balance.
 
-```bend
+```py
 object Account {
   number,
   balance
@@ -42,7 +42,7 @@ To create an instance of an object, we use its constructor. We can access and ma
 Example: Creating an Instance of Account
 Below is an example of `createAccount1` and `createAccount2` functions that create instances of the Account object:
 
-```bend
+```py
 def createAccount1():
   return Account { number: "1234-56", balance: 10000.00 }
 
@@ -54,7 +54,7 @@ def createAccount2():
 
 This function uses the `balance` field of the `Account` object to calculate the balance after withdrawal.
 
-```bend
+```py
 def withdraw(amount, account):
   open Account: account
   return ("Actual balance", (account.balance - amount))

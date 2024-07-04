@@ -4,26 +4,26 @@ Term duplication is done automatically when a variable is used more than once. B
 
 the number 2 in church encoding using let.
 
-```bend
+```js
 ch2 = λf λx let {f1 f2} = f; (f1 (f2 x))
 ```
 
 the number 3 in church encoding using let.
 
-```bend
+```js
 ch3 = λf λx let {f0 f1} = f; let {f2 f3} = f0; (f1 (f2 (f3 x)))
 ```
 
 A `sup` is a superposition of two values, it is defined using curly brackets with two terms inside.
 A superposition is the opposite of a duplication.
 
-```bend
+```js
 sup = {3 7}
 ```
 
 Sups can be used anywhere a value is expected, if anything interacts with the superposition, the result is the superposition of that interaction on both the possible values:
 
-```bend
+```py
 mul = λa λb (* a b)
   result     = (mul 2 5)          # returns 10
   result_sup = (mul 2 {5 7})      # returns {10 14}
@@ -34,7 +34,7 @@ If we pair a superposition with a duplication, the result is that they behave li
 
 each dup variable now has a copy of the {1 2} superposition
 
-```bend
+```js
 let {x1 x2} = {1 2}
 ```
 
@@ -45,7 +45,7 @@ a variable should not duplicate another variable that itself duplicates some var
 
 The program below is an example where this can go wrong when using higher-order functions.
 
-```bend
+```py
 def List/map(xs, f):
   fold xs:
     case List/Nil:

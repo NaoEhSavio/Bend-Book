@@ -1,6 +1,6 @@
 # List
 
-```bend
+```rs
  type List:
    Cons {head, ~tail}
    Nil
@@ -38,7 +38,7 @@ Examples:
 Example of Usage in Code:
 Below is an example of a main function that returns the list ["Hello", "world!"]:
 
-```bend
+```py
 def main():
   return List/Cons("Hello", List/Cons("world!", List/Nil))
 ```

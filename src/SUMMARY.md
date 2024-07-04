@@ -29,6 +29,7 @@
   - [map](Book/02_Data_Structures/05_map.md)
   - [tree](Book/02_Data_Structures/06_tree.md)
   - [matrix](Book/02_Data_Structures/07_matrix.md)
+  - [graph](Book/02_Data_Structures/08_graph.md)
 - [Function Structures]()
   - [functions](Book/03_Function_Structures/01_functions.md)
 - [Patterns and Matching]()

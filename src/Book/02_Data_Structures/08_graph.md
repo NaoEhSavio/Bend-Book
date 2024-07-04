@@ -6,7 +6,7 @@ n Bend, an efficient way to create a graph is by using a map of lists of pairs. 
 Example: Building a Graph in Bend
 Here is an example of how we can build a graph in Bend using a map of lists of pairs:
 
-```bend
+```py
 def main():
   graph = {
     'a': [(4, 'b'), (1, 'c')],

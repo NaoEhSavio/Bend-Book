@@ -5,7 +5,7 @@ In Bend, a common way to construct matrices is by using lists of lists, as it is
 Example: Building a Matrix in Bend
 Here is an example of how we can build a matrix in Bend using lists of lists:
 
-```bend
+```py
 matrix = [
   [1, 2, 3],
   [4, 5, 6],
@@ -17,7 +17,7 @@ In this example, we have a 3x3 matrix with values from 1 to 9 organized into thr
 
 This is a flexible and convenient way to represent matrices in Bend, allowing easy access to elements and manipulation of data structures.
 
-```bend
+```py
 def main():
   return matrix
 ```
