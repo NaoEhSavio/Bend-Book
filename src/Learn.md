@@ -1,3 +1,6 @@
+# Learn Bend
+
+Bend is a high-level, massively parallel programming language. That means it feels like Python, but scales like CUDA. It runs on CPUs and GPUs, and you don't have to do anything to make it parallel: as long as your code isn't "helplessly sequential", it will use 1000's of threads!
 
 ```py
 # Single line comments start with a number symbol.
@@ -8,67 +11,90 @@
 
 ## Basic types
 
-There are numbers
+There are numbers, all are 24 bits:
 
 ``` py
-420  # Unsigned integers (24 bits)
-+69  # Signed integers (24 bits)
-1.4  # Floating point (24 bits)
+420  # unsigned integers
++69  # uigned integers
+1.4  # floating point
 ```
 
-There are also binary and hexadecimal.
+<!--
+There are also binary and hexadecimal literals:
 
 ```py
-0b100_100 # binary 
-0x123_abc # hexadecimal 
--0xbeef   # hex_signed 
-```  
+0b1001_1011  # binary
+0x1234_abcd  # hexadecimal
+-0xbeef      # hexadecimal signed
+```
+-->
 
-There are character literal
+There are character literals:
 
 ```py
 'x'
 ```
 
 - A Character is surrounded with `'`.
-  - Accepts unicode characters, unicode escapes in the form `'\u{hex value}'`.
-  - The value is desugared to a 24-bit unsigned integer `u24`.
+  - Accepts unicode characters like `'β'` and Unicode escapes in the form `'\u{hex value}'`.
+  - The value is desugared to a 24-bit unsigned integer (`u24`).
   - Support Unicode codepoints up to `0xFFFFFF`.
-  
-There are string literal
+
+There are string literals:
 
 ```py
 "Hello, World!"
 ```
 
 - A String literal is surrounded with `"`.
-  - Accepts the same values as characters literals.
-  
+  - Accepts the same as character literals.
+
 Tuples can contain 2 or more elements. they are separated by `,`.
 
 ```py
-(1,2) # tuple
+(1, 2)  # tuple
 
 # pattern match
-(fst, snd, ...) = ("Hi", 2, ...)
-# fst = "Hi"
-# snd = 2
-# ... = ...
-(fst, snd) = (1, "Hello", ...)
+(x1, x2, ..., xn) = ("Hi", 2, ..., 'N')
+# x1 = "Hi"
+# x2 = 2
+# ...
+# xn = 'N'
+
+(fst, snd) = (1, "Hello", ..., 'N')
 # fst = 1
-# snd = ("Hello", ...)
+# snd = ("Hello", ..., 'N')
 ```
 
-Lists that are implemented as lists. they are separated by `,`.
+Lists that are implemented as linked lists.
 
 ```py
 [1,2,3] # list
 
 # list comprehensions
-[x + 1 for x in [1,2,3]] # Result: [2, 3, 4]
+[x + 1 for x in [1,2,3]]  # Result: [2, 3, 4]
+
 # with a conditional
-[x * 2 for x in [1,2,3] if x > 2] # Result: [6, 8]
+[x * 2 for x in [1,2,3] if x > 2]  # Result: [6, 8]
 ```
+
+Map is an efficient binary tree with `u24` keys. It offers O(log n) read and write operations.
+
+```py
+{ 0: 4, 'c': 2 + 3 , ... } # Map
+
+# updating values using keys
+map = { 0: "zero", 1: "one", 2: "two", 3: "three" }
+map[0] = "not zero"      # update the value at key 0
+map[1] = 2               # update the value at key 1
+map[2] = 3               # update the value at key 2
+
+# Using keys in operations
+map[3] = map[1] + map[map[1]]  # Use the value at key 1 and the value at key map[1]
+```
+
+- Keys must values that can be cast to a `u24` number.
+  - The values can be of any type, but mixing types can make reasoning about the map harder.
 
 Map is an efficient binary tree with `u24` keys. It offers O(log n) read and write operations.
 
@@ -89,7 +115,7 @@ map[3] = map[1] + map[map[1]]  # Use the value at key 1 and the value at key map
 
 - keys can be literals or expressions that evaluate to `u24`.
   - The values can be of any type, but mixing types can make reasoning about the map harder.
-  
+
 ## Operators
 
 Some math
@@ -104,33 +130,36 @@ Some math
 10 %  3 => 1    # REM
 10 >> 1 => 5    # SHR
 10 << 1 => 20   # SHL
-10.0 ** 2.0 => 100.0 # POW
+10.0 ** 2.0 => 100.0  # POW
 ```
 
-- In Bend the operator `**` is exclusive to `f24`.
+- In Bend the operator `**` is exclusive to the`f24` type.
 
-There are also boolean operators: `&`, `|` and `^`.
+Booleans are represented with `u24`/`i24` integers `0` and `1`.
+
+There are the boolean operators: `&`, `|` and `^`.
 
 ```py
-1 & 1 => 1 # true  # AND 
-1 | 0 => 1 # true  # OR
-1 ^ 1 => 0 # false # XOR
+1 & 1 => 1  # AND
+1 | 0 => 1  # OR
+1 ^ 1 => 0  # XOR
 ```
 
-- In Bend the boolean operators is exclusive to `i24` and `u24`.
+- In Bend the boolean operators are exclusive to `u24` and `i24`.
 
-For comparisons we have: `==`, `!=`, `<` and `>`, must return a `u24`.
+For comparisons we have: `==`, `!=`, `<`, `>`, `>=` and `<=`, which return `u24`.
 
 ```py
-1.0 == 1.0 => 1 # true  # EQ
-1   !=  1  => 0 # false # NEQ
--1  <  +2  => 1 # true  # LT
-1   >   2  => 0 # false # GT
-2   <=  2  => 1 # true  # LTE
-1.0 >= 2.0 => 0 # false # GTE
+1.0 == 1.0 => 1  # EQ
+1   !=  1  => 0  # NEQ
+-1  <  +2  => 1  # LT
+1   >   2  => 0  # GT
+2   <=  2  => 1  # LTE
+1.0 >= 2.0 => 0  # GTE
 ```
 
-<!-- All values except `False`, `Nil`, `None` and `Empty` will evaluate to O. -->
+<!-- `False`, `Nil`, `None` and `Empty` values will evaluate to `0`. All others evalauate to `1`. -->
+
 ## Basic Functions
 
 Defines a top level function.
@@ -153,13 +182,13 @@ def main:
 
 ```py
 if condition:
-  return # ...then
+  return "condition is true"
 else:
-  return # ...else
+  return "condition is false"
 ```
 
 - A branching statement where `else` is mandatory.
-  - The condition must return a `u24`, where 0 will run the `else` branch and any other value will return the `then`.
+  - The condition must return a `u24`, where 0 is false.
 
 It is possible to make if-chains using `elif`:
 
@@ -174,9 +203,9 @@ else:
   return 3
 ```
 
-Switches may only be used with native numbers values. lets us check for many conditions at the same time.
+Switches may only be used with native numbers values. It lets us check for many cases at the same time.
 
-- beginning with 0 and incrementing by 1. The last case must be `_`, like a `default` case.
+- Beginning with 0 and incrementing by 1. The last case must be `_`, like a `default` case.
 
 ```py
 switch number:
@@ -188,7 +217,7 @@ switch number:
     return number - 2
 ```
 
-Use `Switch` instead of nesting many `if` expressions.
+Use `switch` instead of nesting many `if` expressions.
 
 ```py
 switch condition:
@@ -209,7 +238,7 @@ the cases must be the constructor names of the matching value.
 match variable:
   case type/constructor1:
     # This will match and bind `type/constructor1`
-    return variable.field1  
+    return variable.field1
   case type/constructor2:
     # This will match and bind `type/constructor2`
     return variable.value2
@@ -247,11 +276,11 @@ Bend doesn't have loops; it uses recursion instead.
 `bend` is naturally suited for handling recursive data structures. Unlike traditional loops, `bend` uses recursive calls to repeat operations.
 
 ```py
-bend initialization: # init branch  
-  when condition:    # when branch 
+bend initialization: # init branch
+  when condition:    # when branch
     # code block to be executed
     fork(increment) # optional
-  else:              # end branch        
+  else:              # end branch
     # block of code to be executed a final bend
 ```
 
