@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>bend</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../../Guide/Start.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Guide/About.html"><strong aria-hidden="true">1.1.</strong> About bend</a></li><li class="chapter-item expanded "><a href="../../Guide/Terminal.html"><strong aria-hidden="true">1.2.</strong> Terminal</a></li><li class="chapter-item expanded "><a href="../../Guide/Instalation.html"><strong aria-hidden="true">1.3.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../Guide/IDE.html"><strong aria-hidden="true">1.4.</strong> IDE</a></li><li class="chapter-item expanded "><a href="../../Guide/HelloWord.html"><strong aria-hidden="true">1.5.</strong> Hello World!</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.6.</strong> BPM</div></li></ol></li><li class="chapter-item expanded "><a href="../../Learn.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Logic in Bend</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/01_Logic/01_comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../../Book/01_Logic/02_numbers.html"><strong aria-hidden="true">3.2.</strong> Numbers</a></li><li class="chapter-item expanded "><a href="../../Book/01_Logic/03_variables.html"><strong aria-hidden="true">3.3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="../../Book/01_Logic/04_tail_recursion.html"><strong aria-hidden="true">3.4.</strong> Recursion</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Data Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/01_type.html"><strong aria-hidden="true">4.1.</strong> type</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/02_object.html"><strong aria-hidden="true">4.2.</strong> object</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/03_tuple.html"><strong aria-hidden="true">4.3.</strong> tuple</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/04_list.html"><strong aria-hidden="true">4.4.</strong> list</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/05_map.html"><strong aria-hidden="true">4.5.</strong> map</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/06_tree.html"><strong aria-hidden="true">4.6.</strong> tree</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/07_matrix.html"><strong aria-hidden="true">4.7.</strong> matrix</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Function Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/03_Function_Structures/01_functions.html"><strong aria-hidden="true">5.1.</strong> functions</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Patterns and Matching</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/01_if.html"><strong aria-hidden="true">6.1.</strong> if</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/02_switch.html"><strong aria-hidden="true">6.2.</strong> switch</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/03_match.html"><strong aria-hidden="true">6.3.</strong> match</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/04_fold.html"><strong aria-hidden="true">6.4.</strong> fold</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/05_bend.html" class="active"><strong aria-hidden="true">6.5.</strong> bend</a></li></ol></li><li class="chapter-item expanded "><a href="../../Book/05_IO/io.html"><strong aria-hidden="true">7.</strong> IO</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Language Features</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/06_Functional_Language_Features/01_haskell/01_syntax.html"><strong aria-hidden="true">8.1.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="../../Book/06_Functional_Language_Features/02_lambda/01_lambda.html"><strong aria-hidden="true">8.2.</strong> Lambda</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/06_Functional_Language_Features/02_lambda/02_scopeless_lambdas.html"><strong aria-hidden="true">8.2.1.</strong> scopeless lambdas</a></li></ol></li><li class="chapter-item expanded "><a href="../../Book/06_Functional_Language_Features/03_Sup_and_dups/01_sup_and_dups.html"><strong aria-hidden="true">8.3.</strong> Dups and Sups</a></li></ol></li><li class="chapter-item expanded "><a href="../../Book/07_Concurrency/parallel.html"><strong aria-hidden="true">9.</strong> Concurrency</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><div>Contributors</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-bend-construction-in-bend"><a class="header" href="#the-bend-construction-in-bend">The <code>bend</code> Construction in Bend</a></h1>
+<p>The <code>bend</code> construction in Bend is a powerful and versatile tool used to create recursive data structures and emulate iterative processes in a declarative and functional manner. It allows you to define a recursive process that builds a complex structure step-by-step until a specific condition is met.</p>
+<h2 id="basic-structure"><a class="header" href="#basic-structure">Basic Structure</a></h2>
+<p>The <code>bend</code> construction initializes a recursive process with an initial state and iterates until a specified condition is met. It is similar to an embedded recursive function.</p>
+<pre><code class="language-python">bend &lt;state_variables&gt;:
+  when &lt;condition&gt;:
+    &lt;recursive_operations&gt;
+  else:
+    &lt;termination_operations&gt;
+</code></pre>
+<h3 id="initialization-of-state-variables"><a class="header" href="#initialization-of-state-variables">Initialization of State Variables</a></h3>
+<p>The state variables are initialized in the header of the <code>bend</code>. There can be multiple state variables, each with an initial value.</p>
+<h3 id="immutable-state"><a class="header" href="#immutable-state">Immutable State</a></h3>
+<p>The state variables are treated immutably, ensuring that each recursive step has a consistent and predictable state.</p>
+<h3 id="structured-recursion"><a class="header" href="#structured-recursion">Structured Recursion</a></h3>
+<p>The <code>bend</code> starts a recursive construction, initializing a state and executing a block of code until a stopping condition is met.</p>
+<h3 id="controlled-recursion"><a class="header" href="#controlled-recursion">Controlled Recursion</a></h3>
+<p>The <code>bend</code> construction offers explicit control over recursion, allowing you to clearly define when the recursion should continue and when it should stop.</p>
+<h3 id="continuation-condition"><a class="header" href="#continuation-condition">Continuation Condition</a></h3>
+<p>The <code>when</code> clause defines the condition under which the recursion continues. If the condition is true, the recursive operations are executed. If the condition is false, the termination operations are executed.</p>
+<h3 id="recursive-operations"><a class="header" href="#recursive-operations">Recursive Operations</a></h3>
+<p>Within the <code>when</code> clause, the <code>fork</code> function is used to call the <code>bend</code> recursively with new values for the state variables. The number of arguments passed to <code>fork</code> must match the number of state variables.</p>
+<h3 id="termination-operations"><a class="header" href="#termination-operations">Termination Operations</a></h3>
+<p>When the condition is no longer true, the termination operations are executed in the <code>else</code> clause. This clause defines the final behavior and values returned by the <code>bend</code> construction.</p>
+<h3 id="incremental-construction"><a class="header" href="#incremental-construction">Incremental Construction</a></h3>
+<p>It allows building recursive data structures by adding layers or branches at each recursive call.</p>
+<h3 id="flexibility"><a class="header" href="#flexibility">Flexibility</a></h3>
+<p>The ability to manipulate multiple state variables and construct different types of data structures makes the <code>bend</code> a flexible and powerful tool for various applications.</p>
+<h3 id="versatility"><a class="header" href="#versatility">Versatility</a></h3>
+<p>Besides creating recursive data structures, the <code>bend</code> can be used to simulate iterative processes.</p>
+<h2 id="usage-examples"><a class="header" href="#usage-examples">Usage Examples</a></h2>
+<h3 id="example-1-creating-a-binary-tree"><a class="header" href="#example-1-creating-a-binary-tree">Example 1: Creating a Binary Tree</a></h3>
+<pre><code class="language-python">def create_tree():
+  bend x = 0:
+    when x &lt; 3:
+      left = fork(x + 1)
+      right = fork(x + 1)
+      tree = ![left, right]
+    else:
+      tree = !x
+  return tree
+</code></pre>
+<p>This code creates a binary tree:</p>
+<ul>
+<li>Initializes <code>x = 0</code>.</li>
+<li>Continues recursion while <code>x &lt; 3</code>.</li>
+<li>Within the <code>when</code> clause, <code>fork(x + 1)</code> recursively calls the <code>bend</code> with an incremented value of <code>x</code>.</li>
+<li>Creates tree nodes with <code>![left, right]</code>.</li>
+<li>Ends recursion with <code>!x</code> when <code>x &gt;= 3</code>.</li>
+</ul>
+<h3 id="example-2-sum-calculation-with-emulated-loop"><a class="header" href="#example-2-sum-calculation-with-emulated-loop">Example 2: Sum Calculation with Emulated Loop</a></h3>
+<p>The <code>bend</code> is general enough to emulate a loop by recursively iterating over a state until a termination condition is met. For example, this Python program:</p>
+<pre><code class="language-python">sum = 0
+idx = 0
+while idx &lt; 10:
+  sum = idx + sum
+  idx = idx + 1
+</code></pre>
+<p>can be rewritten using <code>bend</code>:</p>
+<pre><code class="language-python">def loop():
+  bend idx = 0:
+    when idx &lt; 10:
+      sum = idx + fork(idx + 1)
+    else:
+      sum = 0
+  return sum
+</code></pre>
+<p>This code emulates a loop that sums integers from <code>0</code> to <code>9</code> using recursion:</p>
+<ul>
+<li>Initializes <code>idx = 0</code>.</li>
+<li>Continues recursion while <code>idx &lt; 10</code>.</li>
+<li>Iterates over <code>idx</code>, incrementing it by <code>1</code>.</li>
+<li>Computes the sum of integers from <code>0</code> to <code>9</code>, adding the current <code>idx</code> value to the sum of the next iteration.</li>
+<li>Ends recursion returning <code>0</code> when <code>idx &gt;= 10</code>.</li>
+</ul>
+<h3 id="multiple-state-variables"><a class="header" href="#multiple-state-variables">Multiple State Variables</a></h3>
+<p>The <code>bend</code> can handle multiple state variables simultaneously, enabling complex recursive processes.</p>
+<pre><code class="language-python">def mult_var():
+  bend x = 1, y = 2:
+    when x &lt; 10 &amp; y &lt; 20:
+      result = fork(x + 1, y + 2)
+    else:
+      result = (x, y)
+  return result
+</code></pre>
+<p>This code creates a tuple:</p>
+<ul>
+<li>Initializes <code>x = 1</code> and <code>y = 2</code>.</li>
+<li>Continues recursion while <code>x &lt; 10</code> and <code>y &lt; 20</code>.</li>
+<li>Increments <code>x</code> and <code>y</code> differently at each recursive step.</li>
+<li>Ends recursion returning the values of <code>(x, y)</code> when one of the conditions is no longer true.</li>
+</ul>
+<h3 id="recursive-data-structures"><a class="header" href="#recursive-data-structures">Recursive Data Structures</a></h3>
+<p>The <code>bend</code> construction can be used to build complex recursive data structures, such as trees, linked lists, and graphs.</p>
+<pre><code class="language-python">def repeat(target):
+  bend n = 0:
+    when n &lt; target:
+      list = List/Cons(n, fork(n + 1))
+    else:
+      list = []
+  return list
+</code></pre>
+<p>This code creates a linked list:</p>
+<ul>
+<li>Initializes <code>n = 0</code>.</li>
+<li>Continues recursion while <code>n &lt; target</code>.</li>
+<li>Creates list nodes with <code>[n, (n + 1), ..., (n &lt; target)]</code>.</li>
+<li>Ends recursion with <code>[]</code> when <code>n &gt;= target</code>.</li>
+</ul>
+<h3 id="practical-examples-and-exercises"><a class="header" href="#practical-examples-and-exercises">Practical Examples and Exercises</a></h3>
+<h4 id="example-1-factorial"><a class="header" href="#example-1-factorial">Example 1: Factorial</a></h4>
+<p>Calculate the factorial of a number using <code>bend</code>.</p>
+<pre><code class="language-python">def factorial(n):
+  # code
+  return acc
+</code></pre>
+<h4 id="example-2-fibonacci-sequence"><a class="header" href="#example-2-fibonacci-sequence">Example 2: Fibonacci Sequence</a></h4>
+<p>Generate the Fibonacci sequence up to the 10th term.</p>
+<pre><code class="language-python">def fibonacci(n):
+  # code
+  return 
+</code></pre>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
+<p>The <code>bend</code> construction in Bend is a powerful and flexible tool for defining recursive processes, generating complex data structures, state manipulation, and emulating iterative behaviors in a clear and expressive manner. It combines elements of functional programming and recursive data manipulation to build complex structures incrementally and expressively. Understanding its rules and behavior is essential to utilize the full potential of this construction and apply these concepts to real-world programming problems.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Book/04_Patterns_and_Matching/04_fold.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Book/05_IO/io.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Book/04_Patterns_and_Matching/04_fold.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Book/05_IO/io.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
