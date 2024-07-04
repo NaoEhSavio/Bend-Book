@@ -14,7 +14,7 @@
 ## Book
 
 <!-- - [Introduction]() -->
-- [Overview](lean.md)
+- [Overview](Book/Overview.md)
 - [Logic in Bend]()
   - [Variables]()
   - [Numbers]()

@@ -23,9 +23,9 @@ There are numbers, all are 24 bits:
 There are also binary and hexadecimal literals:
 
 ```py
-0b1001_1011  # binary 
-0x1234_abcd  # hexadecimal 
--0xbeef      # hexadecimal signed 
+0b1001_1011  # binary
+0x1234_abcd  # hexadecimal
+-0xbeef      # hexadecimal signed
 ```
 -->
 
@@ -96,6 +96,26 @@ map[3] = map[1] + map[map[1]]  # Use the value at key 1 and the value at key map
 - Keys must values that can be cast to a `u24` number.
   - The values can be of any type, but mixing types can make reasoning about the map harder.
 
+Map is an efficient binary tree with `u24` keys. It offers O(log n) read and write operations.
+
+```py
+{ 0: 4, 'c': 2 + 3 , ... } # Map
+
+# pattern match
+map = { 0: "zero", 1: "one", 2: "two", 3: "three" }
+
+# Updating values using keys
+map[0] = "not zero"      # Update the value at key 0
+map[1] = 2               # Update the value at key 1
+map[2] = 3               # Update the value at key 2
+
+# Using keys in operations
+map[3] = map[1] + map[map[1]]  # Use the value at key 1 and the value at key map[1]
+```
+
+- keys can be literals or expressions that evaluate to `u24`.
+  - The values can be of any type, but mixing types can make reasoning about the map harder.
+
 ## Operators
 
 Some math
@@ -120,7 +140,7 @@ Booleans are represented with `u24`/`i24` integers `0` and `1`.
 There are the boolean operators: `&`, `|` and `^`.
 
 ```py
-1 & 1 => 1  # AND 
+1 & 1 => 1  # AND
 1 | 0 => 1  # OR
 1 ^ 1 => 0  # XOR
 ```
@@ -218,7 +238,7 @@ the cases must be the constructor names of the matching value.
 match variable:
   case type/constructor1:
     # This will match and bind `type/constructor1`
-    return variable.field1  
+    return variable.field1
   case type/constructor2:
     # This will match and bind `type/constructor2`
     return variable.value2
@@ -256,11 +276,11 @@ Bend doesn't have loops; it uses recursion instead.
 `bend` is naturally suited for handling recursive data structures. Unlike traditional loops, `bend` uses recursive calls to repeat operations.
 
 ```py
-bend initialization: # init branch  
-  when condition:    # when branch 
+bend initialization: # init branch
+  when condition:    # when branch
     # code block to be executed
     fork(increment) # optional
-  else:              # end branch        
+  else:              # end branch
     # block of code to be executed a final bend
 ```
 
