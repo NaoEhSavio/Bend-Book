@@ -1,7 +1,6 @@
 # Graphs in Bend
 
-I
-n Bend, an efficient way to create a graph is by using a map of lists of pairs. Each key in the map represents a node, and the list of pairs associated with that key represents the edges connecting that node to other nodes, along with the associated distances.
+In Bend, graphs are not a native type. Therefore, an efficient way to create a graph is by using a map of lists of pairs. Each key in the map represents a node, and the list of pairs associated with that key represents the edges connecting that node to other nodes, along with the associated distances.
 
 Example: Building a Graph in Bend
 Here is an example of how we can build a graph in Bend using a map of lists of pairs:

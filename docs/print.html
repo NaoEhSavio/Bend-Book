@@ -1248,7 +1248,7 @@ representing the following tree:</p>
 1     2 3     4
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="matrices-in-bend"><a class="header" href="#matrices-in-bend">Matrices in Bend</a></h1>
-<p>In Bend, a common way to construct matrices is by using lists of lists, as it is not a native type. Each inner list represents a row of the matrix.</p>
+<p>In Bend, matrices are not a native type. Therefore, a common way to construct matrices is by using lists of lists, as it is not a native type. Each inner list represents a row of the matrix.</p>
 <p>Example: Building a Matrix in Bend
 Here is an example of how we can build a matrix in Bend using lists of lists:</p>
 <pre><code class="language-py">matrix = [
@@ -1263,8 +1263,7 @@ Here is an example of how we can build a matrix in Bend using lists of lists:</p
   return matrix
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="graphs-in-bend"><a class="header" href="#graphs-in-bend">Graphs in Bend</a></h1>
-<p>I
-n Bend, an efficient way to create a graph is by using a map of lists of pairs. Each key in the map represents a node, and the list of pairs associated with that key represents the edges connecting that node to other nodes, along with the associated distances.</p>
+<p>In Bend, graphs are not a native type. Therefore, an efficient way to create a graph is by using a map of lists of pairs. Each key in the map represents a node, and the list of pairs associated with that key represents the edges connecting that node to other nodes, along with the associated distances.</p>
 <p>Example: Building a Graph in Bend
 Here is an example of how we can build a graph in Bend using a map of lists of pairs:</p>
 <pre><code class="language-py">def main():
