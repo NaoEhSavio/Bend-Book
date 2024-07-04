@@ -6,7 +6,7 @@ Bend is a language that supports defining functions in a concise and expressive 
 
 Functions are defined using the `def` keyword followed by the function name, parameters in parentheses, and a body.
 
-```bend
+```py
 def sum(a, b):
   result = a + b
   return result
@@ -20,7 +20,7 @@ Bend supports anonymous functions, also known as lambdas, which are defined usin
 
 Example of an anonymous function that increments a number:
 
-```bend
+```py
 def lambda_inc:
   inc = lambda x: x + 1
   return inc
@@ -35,7 +35,7 @@ Higher-order functions are those that accept other functions as parameters or re
 
 Example of a function that accepts another function as a parameter:
 
-```bend
+```py
 def apply_two_times(f, x):
   return f(f(x))
 ```
@@ -49,7 +49,7 @@ Bend supports recursion, allowing a function to call itself.
 
 Example of a recursive function to calculate the factorial of a number:
 
-```bend
+```py
 def factorial(n):
   if n == 0:
     return 1
@@ -65,7 +65,7 @@ Functions can use pattern matching to decompose values and make decisions based 
 
 Example of a function that uses pattern matching to calculate the factorial:
 
-```bend
+```py
 def factorial_match(n):
   switch n:
     case 0:
@@ -80,14 +80,14 @@ In Bend, functions can be partially applied through currying, allowing a functio
 
 Example of a curried function:
 
-```bend
+```py
 def curried_sum(a):
   return lambda b: a + b
 ```
 
 Using the curried function:
 
-```bend
+```py
 sum5    = curried_sum(5)
 sum5_3  = sum5(3)  # result is 8
 ```
@@ -96,7 +96,7 @@ Conclusion
 
 Functions in Bend are powerful and flexible, allowing for the creation of modular and reusable code. With support for anonymous functions, recursion, currying, and pattern matching, Bend facilitates writing concise and expressive functions.
 
-```bend
+```py
 def main():
   sum_result = sum(2, 3)
   lambda_inc_result = lambda_inc(5)

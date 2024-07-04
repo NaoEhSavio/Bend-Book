@@ -20,7 +20,7 @@ Bend provides the `![]` operator to create tree branches and the `!` operator to
 
 Example: Building a Tree in Bend
 
-```bend
+```py
 def main():
   tree = ![![!1, !2], ![!3, !4]]
   return tree

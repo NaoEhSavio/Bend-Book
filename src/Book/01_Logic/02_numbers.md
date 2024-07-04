@@ -78,7 +78,7 @@ Functions
 
 Testing the conversion function
 
-```bend
+```py
 def main():
   ex01 = 'A'        # Should return 65 (Unicode value of 'A')
   ex02 = '\u{123}'  # Should return 291 (Unicode value of '\u{123}')

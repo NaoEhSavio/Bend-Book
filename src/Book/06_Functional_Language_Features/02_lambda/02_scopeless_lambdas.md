@@ -4,13 +4,13 @@ Scopeless lambdas are very powerful lambdas that are a side-effect of HVM's inte
 
 Scopeless lambdas are lambdas that have no scope. The variables bound by them can be used outside the lambda's body. They can be created by prefixing a dollar symbol (`$`) to a lambda's variable name.
 
-```bend
+```py
 id = λ$x $x # The identity function as a scopeless lambda
 ```
 
 Of course, using scopeless lambdas as a replacement for regular lambdas is kind of pointless. Their real power comes from being able to use the bound variable outside the body:
 
-```bend
+```js
 Ex1 = (((λ$x 1) 2), $x)
 ```
 
@@ -20,7 +20,7 @@ Outputs (1, 2)
 Take some time to think about the program above. It is valid, despite `$x` being used outside the lambda's body.
 However, scopeless lambdas don't bind across definitions.
 
-```bend
+```js
 def = $x
 main = (((λ$x 1) 2), def)
 ```
@@ -31,7 +31,7 @@ The bound variables are local to each term.
 
 We have seen that the variable bound to a scopeless lambda gets set when the lambda is called. But, what happens if we never call `λ$x 1`? What will `$x` get set to then? Here is a program that does that:
 
-```bend
+```py
 Ex2 =
   let _ = λ$x 1 # Discard and erase the scopeless lambda
   (2, $x) # Outputs (2, *)
@@ -49,7 +49,7 @@ Try to answer this with your knowledge of HVM.
 Will it throw a runtime error?
 Will it return something unexpected?
 
-```bend
+```py
 Ex3 =
   let f = λ$x 1 # Assign the lambda to a variable
   ((f 2), ((f 3), $x)) # Return a tuple of (f 2) and another tuple.
@@ -73,7 +73,7 @@ An example of a function that is usually thought as "primitive", but can be impl
 Call/cc is a function that takes a function that takes a parameter `k`.
 When `k` is called with an argument, `callcc` returns it.
 
-```bend
+```py
 # Function that discards its second argument
 Seq a b = a
 

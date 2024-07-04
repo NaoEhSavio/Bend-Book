@@ -9,7 +9,7 @@ Single-line comments start with the hash symbol (`#`). All text after the hash s
 Example: Single-Line Comments
 Here is an example of using single-line comments in Bend:
 
-```bend
+```py
 def example():
   # This is a single-line comment
   x = 10  # This comment explains the variable x
@@ -23,7 +23,7 @@ Bend does not have a native mechanism for multi-line comments, like comment bloc
 Example: Multi-Line Comments
 Here is an example of using multi-line comments in Bend:
 
-```bend
+```py
 def example_multiline():
   # This is a multi-line comment
   # that explains the code below in detail.
@@ -39,7 +39,7 @@ Comments should be used to clarify the purpose of the code, explain complex logi
 Example: Clear and Useful Comments
 Here is an example of how to use comments clearly and usefully:
 
-```bend
+```py
 def fib(n):
   # Function to calculate the nth Fibonacci number
   switch n:
@@ -60,7 +60,7 @@ def fib(n):
 Comments are a powerful tool for improving code readability and maintenance.
 Use them wisely to document your code in Bend.
 
-```bend
+```py
 def main():
   example = example() # Should return 10
   example_multiline = example_multiline() # Should return 20

@@ -6,7 +6,7 @@ In Bend, types are fundamental for defining the structure and nature of the data
 
 To define a type in Bend, we use the `type` keyword. A type can have multiple constructors, each with its own fields. Here is the basic syntax for defining a type:
 
-```bend
+```rs
 type TypeName:
   Constructor1 {value, field1, field2, ...}
   Constructor2 {field1, field2, ...}
@@ -17,7 +17,7 @@ Example: Defining a Vector Type
 
 Let's create a `Vector` type that represents a list of elements. Each element is a pair of an integer and an associated value. Here is the definition of the `Vector` type:
 
-```bend
+```rs
 type Vector:
   Nil
   Cons {n, head, ~tail}
@@ -40,7 +40,7 @@ Here is an example of defining a type to represent the days of the week and a fu
 
 Defining the `Day` Type
 
-```bend
+```rs
 type Day:
   monday
   tuesday
@@ -57,7 +57,7 @@ Here we define the `Day` type with seven constructors, one for each day of the w
 
 The `NextWeekday` function takes a value of type `Day` and returns the next weekday. We use pattern matching to define the behavior of the function for each day of the week.
 
-```bend
+```py
 def NextWeekday(day):
   match day:
     case Day/monday:
@@ -78,7 +78,7 @@ In this example, we define the `NextWeekday` function that maps each day of the 
 
 To create an instance of a defined type, we use its constructors. Here is an example of how to create a vector with three elements:
 
-```bend
+```py
 def ex1():
   # Create a vector with three elements: (2, "a"), (1, "b"), and (0, "c")
   my_vector = Vector/Cons(2, "a", Vector/Cons(1, "b", Vector/Cons(0, "c", Vector/Nil)))
@@ -92,7 +92,7 @@ In this example, we create a vector with three elements: (2, "a"), (1, "b"), and
 To verify the functionality of the `NextWeekday` function, we create a `main` function that
 tests the function with some examples:
 
-```bend
+```py
 def main():
   my_vector = ex1()
   # Two weekdays after Saturday

@@ -27,7 +27,7 @@ snd = ("Hello", ..., lst)
 To create and manipulate tuples, we use the syntax of parentheses and commas.
 Below is an example of functions that return the first, second, and third elements of a tuple:
 
-```bend
+```py
 def return_fst(t):
   (fst, snd) = t
   return fst

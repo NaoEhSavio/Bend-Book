@@ -24,7 +24,7 @@ The equational notation in Bend follows a simple structure:
 
 Let's create a function that calculates the sum from 0 to n:
 
-```bend
+```py
 Sum 0 = 0
 Sum n = (+ n (Sum (- n 1)))
 ```
@@ -36,7 +36,7 @@ Sum n = (+ n (Sum (- n 1)))
 
 A function to calculate the factorial of a number:
 
-```bend
+```py
 Factorial 0 = 1
 Factorial n = (* n (Factorial (- n 1)))
 ```
@@ -48,7 +48,7 @@ Factorial n = (* n (Factorial (- n 1)))
 
 A function to calculate the nth Fibonacci number:
 
-```bend
+```py
 Fibonacci 0 = 0
 Fibonacci 1 = 1
 Fibonacci n = (+ (Fibonacci (- n 1)) (Fibonacci (- n 2)))
@@ -66,7 +66,7 @@ Equational notation can also be used with user-defined types, such as lists, tre
 
 First, let's define a `UserList` type that represents a list:
 
-```bend
+```rs
 type UserList:
   Cons { head, ~tail }
   Nil
@@ -79,7 +79,7 @@ type UserList:
 
 Now, a function that calculates the length of a list:
 
-```bend
+```py
 Length UserList/Nil = 0
 Length (UserList/Cons head tail) = (+ 1 (Length tail))
 ```
@@ -89,9 +89,9 @@ Length (UserList/Cons head tail) = (+ 1 (Length tail))
 
 ### Using Bend in Equational Notation
 
-Creating a function that calculates `2^n` using the `bend` in traditional notation:
+Creating a function that calculates `2^n` using the `py` in traditional notation:
 
-```bend
+```py
 def exp2(n):
   bend x = 0:
     when x < n:
@@ -128,7 +128,7 @@ At the end, each leaf gets the value 1 and the sum of all the leaves is `2^n`.
 
 It is possible to use this notation while using the equational one, but for standardization, there is an equivalent way to write the `exp2` function using equational notation:
 
-```bend
+```py
 Exp2 n =
   (bend x = 0 {
     when (< x n):(
@@ -144,13 +144,13 @@ Exp2 n =
 
 The `Exp2` function is equivalent to the `exp2` function and uses equational notation to define the function clearly and concisely.
 
-The syntax of `bend` in equational notation is as follows:
+The syntax of `py` in equational notation is as follows:
 bend bind=term, ... { when cond: term; else: term; }
 
 Complete Example
-
-```bend
 Let's combine everything in a complete example:
+
+```py
 Main =
   let sum      = ("Sum", (Sum 5))
   let factorial  = ("Factorial", (Factorial 5))
