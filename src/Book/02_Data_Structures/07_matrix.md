@@ -1,6 +1,6 @@
 # Matrices in Bend
 
-In Bend, a common way to construct matrices is by using lists of lists, as it is not a native type. Each inner list represents a row of the matrix.
+In Bend, matrices are not a native type. Therefore, a common way to construct matrices is by using lists of lists, as it is not a native type. Each inner list represents a row of the matrix.
 
 Example: Building a Matrix in Bend
 Here is an example of how we can build a matrix in Bend using lists of lists:
