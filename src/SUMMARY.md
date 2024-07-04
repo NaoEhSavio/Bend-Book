@@ -28,7 +28,7 @@
   - [match]()
   - [switch]()
   - [fold]()
-  - [bend]()
+  - [bend]()  
 - [IO]()
 - [Functional Language Features]()
   - [Haskell]()
