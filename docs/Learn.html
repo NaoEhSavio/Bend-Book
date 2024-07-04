@@ -1,0 +1,550 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Overview</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded "><a href="Guide/Start.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Guide/About.html"><strong aria-hidden="true">1.1.</strong> About bend</a></li><li class="chapter-item expanded "><a href="Guide/Terminal.html"><strong aria-hidden="true">1.2.</strong> Terminal</a></li><li class="chapter-item expanded "><a href="Guide/Instalation.html"><strong aria-hidden="true">1.3.</strong> Installation</a></li><li class="chapter-item expanded "><a href="Guide/IDE.html"><strong aria-hidden="true">1.4.</strong> IDE</a></li><li class="chapter-item expanded "><a href="Guide/HelloWord.html"><strong aria-hidden="true">1.5.</strong> Hello World!</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.6.</strong> BPM</div></li></ol></li><li class="chapter-item expanded "><a href="Learn.html" class="active"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Logic in Bend</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Book/01_Logic/01_comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="Book/01_Logic/02_numbers.html"><strong aria-hidden="true">3.2.</strong> Numbers</a></li><li class="chapter-item expanded "><a href="Book/01_Logic/03_variables.html"><strong aria-hidden="true">3.3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="Book/01_Logic/04_tail_recursion.html"><strong aria-hidden="true">3.4.</strong> Recursion</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Data Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Book/02_Data_Structures/01_type.html"><strong aria-hidden="true">4.1.</strong> type</a></li><li class="chapter-item expanded "><a href="Book/02_Data_Structures/02_object.html"><strong aria-hidden="true">4.2.</strong> object</a></li><li class="chapter-item expanded "><a href="Book/02_Data_Structures/03_tuple.html"><strong aria-hidden="true">4.3.</strong> tuple</a></li><li class="chapter-item expanded "><a href="Book/02_Data_Structures/04_list.html"><strong aria-hidden="true">4.4.</strong> list</a></li><li class="chapter-item expanded "><a href="Book/02_Data_Structures/05_map.html"><strong aria-hidden="true">4.5.</strong> map</a></li><li class="chapter-item expanded "><a href="Book/02_Data_Structures/06_tree.html"><strong aria-hidden="true">4.6.</strong> tree</a></li><li class="chapter-item expanded "><a href="Book/02_Data_Structures/07_matrix.html"><strong aria-hidden="true">4.7.</strong> matrix</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Function Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Book/03_Function_Structures/01_functions.html"><strong aria-hidden="true">5.1.</strong> functions</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Patterns and Matching</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Book/04_Patterns_and_Matching/01_if.html"><strong aria-hidden="true">6.1.</strong> if</a></li><li class="chapter-item expanded "><a href="Book/04_Patterns_and_Matching/02_switch.html"><strong aria-hidden="true">6.2.</strong> switch</a></li><li class="chapter-item expanded "><a href="Book/04_Patterns_and_Matching/03_match.html"><strong aria-hidden="true">6.3.</strong> match</a></li><li class="chapter-item expanded "><a href="Book/04_Patterns_and_Matching/04_fold.html"><strong aria-hidden="true">6.4.</strong> fold</a></li><li class="chapter-item expanded "><a href="Book/04_Patterns_and_Matching/05_bend.html"><strong aria-hidden="true">6.5.</strong> bend</a></li></ol></li><li class="chapter-item expanded "><a href="Book/05_IO/io.html"><strong aria-hidden="true">7.</strong> IO</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Language Features</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="Book/06_Functional_Language_Features/01_haskell/01_syntax.html"><strong aria-hidden="true">8.1.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="Book/06_Functional_Language_Features/02_lambda/01_lambda.html"><strong aria-hidden="true">8.2.</strong> Lambda</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="Book/06_Functional_Language_Features/02_lambda/02_scopeless_lambdas.html"><strong aria-hidden="true">8.2.1.</strong> scopeless lambdas</a></li></ol></li><li class="chapter-item expanded "><a href="Book/06_Functional_Language_Features/03_Sup_and_dups/01_sup_and_dups.html"><strong aria-hidden="true">8.3.</strong> Dups and Sups</a></li></ol></li><li class="chapter-item expanded "><a href="Book/07_Concurrency/parallel.html"><strong aria-hidden="true">9.</strong> Concurrency</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><div>Contributors</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="learn-bend"><a class="header" href="#learn-bend">Learn Bend</a></h1>
+<p>Bend is a high-level, massively parallel programming language. That means it feels like Python, but scales like CUDA. It runs on CPUs and GPUs, and you don't have to do anything to make it parallel: as long as your code isn't "helplessly sequential", it will use 1000's of threads!</p>
+<pre><code class="language-py"># Single line comments start with a number symbol.
+
+# There's no multi-line comment,
+# but you can stack multiple comments.
+</code></pre>
+<h2 id="basic-types"><a class="header" href="#basic-types">Basic types</a></h2>
+<p>There are numbers, all are 24 bits:</p>
+<pre><code class="language-py">420  # unsigned integers
++69  # uigned integers
+1.4  # floating point
+</code></pre>
+<!--
+There are also binary and hexadecimal literals:
+
+```py
+0b1001_1011  # binary
+0x1234_abcd  # hexadecimal
+-0xbeef      # hexadecimal signed
+```
+-->
+<p>There are character literals:</p>
+<pre><code class="language-py">'x'
+</code></pre>
+<ul>
+<li>A Character is surrounded with <code>'</code>.
+<ul>
+<li>Accepts unicode characters like <code>'β'</code> and Unicode escapes in the form <code>'\u{hex value}'</code>.</li>
+<li>The value is desugared to a 24-bit unsigned integer (<code>u24</code>).</li>
+<li>Support Unicode codepoints up to <code>0xFFFFFF</code>.</li>
+</ul>
+</li>
+</ul>
+<p>There are string literals:</p>
+<pre><code class="language-py">"Hello, World!"
+</code></pre>
+<ul>
+<li>A String literal is surrounded with <code>"</code>.
+<ul>
+<li>Accepts the same as character literals.</li>
+</ul>
+</li>
+</ul>
+<p>Tuples can contain 2 or more elements. they are separated by <code>,</code>.</p>
+<pre><code class="language-py">(1, 2)  # tuple
+
+# pattern match
+(x1, x2, ..., xn) = ("Hi", 2, ..., 'N')
+# x1 = "Hi"
+# x2 = 2
+# ...
+# xn = 'N'
+
+(fst, snd) = (1, "Hello", ..., 'N')
+# fst = 1
+# snd = ("Hello", ..., 'N')
+</code></pre>
+<p>Lists that are implemented as linked lists.</p>
+<pre><code class="language-py">[1,2,3] # list
+
+# list comprehensions
+[x + 1 for x in [1,2,3]]  # Result: [2, 3, 4]
+
+# with a conditional
+[x * 2 for x in [1,2,3] if x &gt; 2]  # Result: [6, 8]
+</code></pre>
+<p>Map is an efficient binary tree with <code>u24</code> keys. It offers O(log n) read and write operations.</p>
+<pre><code class="language-py">{ 0: 4, 'c': 2 + 3 , ... } # Map
+
+# updating values using keys
+map = { 0: "zero", 1: "one", 2: "two", 3: "three" }
+map[0] = "not zero"      # update the value at key 0
+map[1] = 2               # update the value at key 1
+map[2] = 3               # update the value at key 2
+
+# Using keys in operations
+map[3] = map[1] + map[map[1]]  # Use the value at key 1 and the value at key map[1]
+</code></pre>
+<ul>
+<li>Keys must values that can be cast to a <code>u24</code> number.
+<ul>
+<li>The values can be of any type, but mixing types can make reasoning about the map harder.</li>
+</ul>
+</li>
+</ul>
+<p>Map is an efficient binary tree with <code>u24</code> keys. It offers O(log n) read and write operations.</p>
+<pre><code class="language-py">{ 0: 4, 'c': 2 + 3 , ... } # Map
+
+# pattern match
+map = { 0: "zero", 1: "one", 2: "two", 3: "three" }
+
+# Updating values using keys
+map[0] = "not zero"      # Update the value at key 0
+map[1] = 2               # Update the value at key 1
+map[2] = 3               # Update the value at key 2
+
+# Using keys in operations
+map[3] = map[1] + map[map[1]]  # Use the value at key 1 and the value at key map[1]
+</code></pre>
+<ul>
+<li>keys can be literals or expressions that evaluate to <code>u24</code>.
+<ul>
+<li>The values can be of any type, but mixing types can make reasoning about the map harder.</li>
+</ul>
+</li>
+</ul>
+<h2 id="operators"><a class="header" href="#operators">Operators</a></h2>
+<p>Some math</p>
+<ul>
+<li>Bend supports operations only between identical types of numbers.</li>
+</ul>
+<pre><code class="language-py">10 + 10 =&gt; 20   # ADD
+10 -  5 =&gt; 5    # SUB
+5  *  2 =&gt; 10   # MUL
+10 /  2 =&gt; 5    # DIV
+10 %  3 =&gt; 1    # REM
+10 &gt;&gt; 1 =&gt; 5    # SHR
+10 &lt;&lt; 1 =&gt; 20   # SHL
+10.0 ** 2.0 =&gt; 100.0  # POW
+</code></pre>
+<ul>
+<li>In Bend the operator <code>**</code> is exclusive to the<code>f24</code> type.</li>
+</ul>
+<p>Booleans are represented with <code>u24</code>/<code>i24</code> integers <code>0</code> and <code>1</code>.</p>
+<p>There are the boolean operators: <code>&amp;</code>, <code>|</code> and <code>^</code>.</p>
+<pre><code class="language-py">1 &amp; 1 =&gt; 1  # AND
+1 | 0 =&gt; 1  # OR
+1 ^ 1 =&gt; 0  # XOR
+</code></pre>
+<ul>
+<li>In Bend the boolean operators are exclusive to <code>u24</code> and <code>i24</code>.</li>
+</ul>
+<p>For comparisons we have: <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&gt;=</code> and <code>&lt;=</code>, which return <code>u24</code>.</p>
+<pre><code class="language-py">1.0 == 1.0 =&gt; 1  # EQ
+1   !=  1  =&gt; 0  # NEQ
+-1  &lt;  +2  =&gt; 1  # LT
+1   &gt;   2  =&gt; 0  # GT
+2   &lt;=  2  =&gt; 1  # LTE
+1.0 &gt;= 2.0 =&gt; 0  # GTE
+</code></pre>
+<!-- `False`, `Nil`, `None` and `Empty` values will evaluate to `0`. All others evalauate to `1`. -->
+<h2 id="basic-functions"><a class="header" href="#basic-functions">Basic Functions</a></h2>
+<p>Defines a top level function.
+use <code>def</code> to define your functions.</p>
+<pre><code class="language-py">def add(x, y):
+  result = x + y
+  return result
+
+def main:
+  return add(40, 2)
+</code></pre>
+<ul>
+<li>A function definition is composed by a name, a sequence of parameters and a body.
+<ul>
+<li>A top-level name can be anything matching the regex <code>[A-Za-z0-9_.-/]+</code>, except it can't have <code>__</code> (used for generated names) or start with <code>//</code>.</li>
+<li>The last statement of each function must either be a return or a selection statement (<code>if</code>, <code>switch</code>, <code>match</code>, <code>fold</code>) where all branches <code>return</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
+<pre><code class="language-py">if condition:
+  return "condition is true"
+else:
+  return "condition is false"
+</code></pre>
+<ul>
+<li>A branching statement where <code>else</code> is mandatory.
+<ul>
+<li>The condition must return a <code>u24</code>, where 0 is false.</li>
+</ul>
+</li>
+</ul>
+<p>It is possible to make if-chains using <code>elif</code>:</p>
+<pre><code class="language-py">if condition1:
+  return 0
+elif condition2:
+  return 1
+elif condition3:
+  return 2
+else:
+  return 3
+</code></pre>
+<p>Switches may only be used with native numbers values. It lets us check for many cases at the same time.</p>
+<ul>
+<li>Beginning with 0 and incrementing by 1. The last case must be <code>_</code>, like a <code>default</code> case.</li>
+</ul>
+<pre><code class="language-py">switch number:
+  case 0:
+    return 6
+  case 1:
+    return 7
+  case _: # default
+    return number - 2
+</code></pre>
+<p>Use <code>switch</code> instead of nesting many <code>if</code> expressions.</p>
+<pre><code class="language-py">switch condition:
+  case 0:
+    # else branch
+    return 1
+  case _: # default
+    # then branch
+    return 0
+</code></pre>
+<p>Remember pattern matching? Many control-flow structures in Bend rely on it.</p>
+<p><code>match</code> allows us to compare a value against many patterns.
+the cases must be the constructor names of the matching value.</p>
+<pre><code class="language-py">match variable:
+  case type/constructor1:
+    # This will match and bind `type/constructor1`
+    return variable.field1
+  case type/constructor2:
+    # This will match and bind `type/constructor2`
+    return variable.value2
+  ...
+</code></pre>
+<p>A <code>fold</code> statement. Reduces the given value with the given match cases.</p>
+<pre><code class="language-py">fold variable:
+  case type/constructor1:
+    return variable.value1 + variable.field1 - variable.field2 ...
+  case type/constructor2:
+    return variable.value2 ...
+  ...
+</code></pre>
+<ul>
+<li>You can use fold to reduce a <code>type</code>
+<ul>
+<li>For fields notated with <code>~</code> in the type definition, the fold function is called implicitly.</li>
+</ul>
+</li>
+</ul>
+<p>It is equivalent to the inline recursive function:</p>
+<pre><code class="language-py">def fold(x)
+  match x:
+    case type/constructor1:
+      return x.value1 + fold(x.field1) - fold(x.field2) ...
+    case type/constructor2:
+      return x.value2 ...
+    ...
+</code></pre>
+<p>Bend doesn't have loops; it uses recursion instead.</p>
+<p><code>bend</code> is naturally suited for handling recursive data structures. Unlike traditional loops, <code>bend</code> uses recursive calls to repeat operations.</p>
+<pre><code class="language-py">bend initialization: # init branch
+  when condition:    # when branch
+    # code block to be executed
+    fork(increment) # optional
+  else:              # end branch
+    # block of code to be executed a final bend
+</code></pre>
+<ul>
+<li>In <code>bend</code>, state variables are passed explicitly.
+<ul>
+<li>It is possible to pass multiple state variables, which can be initialized.</li>
+<li>When calling <code>fork</code>, the function must receive the same number of arguments as those passed during initialization.</li>
+</ul>
+</li>
+</ul>
+<p>It is equivalent to this inline recursive function:</p>
+<pre><code class="language-py">def bend(x, y, ...):
+  if condition(x, y, ...):
+    ...
+    return ... bend(x, y, ...) ...
+  else:
+    return ...
+</code></pre>
+<p>Open</p>
+<pre><code class="language-py">open object: variable
+...
+return object { field1: variable.field1, field2: ... }
+</code></pre>
+<ul>
+<li>Brings the inner fields of an <code>object</code> into scope.
+<ul>
+<li>The original variable can still be accessed, but doing so will cause any used fields to be duplicated.</li>
+</ul>
+</li>
+</ul>
+<p>It's equivalent to pattern matching on the <code>object</code>, with the restriction that its type must have only one constructor.</p>
+<pre><code class="language-py">match variable:
+  case object:
+    ...
+</code></pre>
+<h3 id="datatypes"><a class="header" href="#datatypes">Datatypes</a></h3>
+<p>Algebraic data type</p>
+<ul>
+<li>Type names must be unique, and should have at least one constructor.
+<ul>
+<li>Each constructor is defined by a name followed by its fields.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-py">type Option:
+  Some { value }
+  None
+
+type Map:
+  Node { value, ~left, ~right }
+  Leaf
+</code></pre>
+<ul>
+<li>The <code>~</code> notation indicates a recursive field.
+<ul>
+<li>The constructor names inherit the name of their types and become functions <code>Map/Node</code> and <code>Map/Leaf</code>.</li>
+<li>The exact function they become depends on the encoding.</li>
+</ul>
+</li>
+</ul>
+<p>Defines a type with a single constructor (like a struct, a record or a class).</p>
+<pre><code class="language-py">object Pair { fst, snd }
+
+object Function { name, args, body }
+
+object Vec { len, data }
+</code></pre>
+<p>The constructor created from this definition has the same name as the type.</p>
+<h2 id="more-functions"><a class="header" href="#more-functions">More Functions</a></h2>
+<p>todo</p>
+<p>Bind also provides many built-in functions</p>
+<p>todo</p>
+<h2 id="io"><a class="header" href="#io">IO</a></h2>
+<p>TODO</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="Guide/HelloWord.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="Book/01_Logic/01_comments.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="Guide/HelloWord.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="Book/01_Logic/01_comments.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
