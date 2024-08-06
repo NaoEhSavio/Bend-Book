@@ -61,6 +61,7 @@ def complex_calculation():
 ```
 
 Neste exemplo:
+
 1. Definimos o tipo `Result` e suas funções `bind` e `wrap`.
 2. `safe_div` é uma função que retorna um `Result`.
 3. `complex_calculation` usa um bloco `with` para encadear operações de `safe_div`.

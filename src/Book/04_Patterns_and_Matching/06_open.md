@@ -1,8 +1,8 @@
-# Open Statements em Bend
+# Open em Bend
 
 ## Introdução
 
-Os `open statements` em Bend são uma construção sintática que permite trazer os campos internos de um objeto para o escopo local. Isso facilita o acesso e a manipulação desses campos, tornando o código mais limpo e legível, especialmente quando se trabalha com objetos complexos.
+Os `open` em Bend são uma construção sintática que permite trazer os campos internos de um objeto para o escopo local. Isso facilita o acesso e a manipulação desses campos, tornando o código mais limpo e legível, especialmente quando se trabalha com objetos complexos.
 
 ## Conceito e Funcionamento
 
@@ -36,11 +36,30 @@ let point = Point { x: 1.0, y: 2.0 };
 let Point { x, y } = point;
 ```
 
-## Vantagens dos Open Statements
+## Vantagens dos Open
 
 1. **Clareza**: Reduz a verbosidade ao trabalhar com campos de objetos.
 2. **Escopo Local**: Limita o acesso aos campos apenas onde necessário.
 3. **Flexibilidade**: Permite usar tanto os campos locais quanto o objeto original.
+
+### Estrutura Básica do `open`
+
+A instrução `open` é usada para extrair os campos internos de um objeto para o escopo local. A variável original ainda pode ser acessada, mas qualquer campo utilizado será duplicado.
+
+```python
+object Point {x, y}
+
+def main():
+  p = Point { x: 10, y: 20 }
+  open Point: p
+  return Point { x: p.x * p.x, y: p.y * p.y }
+```
+
+No exemplo acima:
+
+- `p` é um objeto do tipo `Point` com campos `x` e `y`.
+- A instrução `open Point: p` traz os campos `x` e `y` de `p` para o escopo local.
+- `p` ainda pode ser acessado, mas os campos utilizados serão duplicados.
 
 ## Aplicações Práticas
 
@@ -82,43 +101,36 @@ def main():
 
 ## Considerações Avançadas
 
-### 1. Escopo e Shadowing
+### 1. Equivalente a Pattern Matching
 
-O `open statement` pode potencialmente sombrear variáveis existentes no escopo atual. É importante estar ciente disso para evitar confusões:
+A instrução `open` é equivalente a fazer pattern matching no objeto, com a restrição de que o tipo deve ter apenas um construtor.
+
+```python
+open Point: p
+
+# É equivalente a:
+
+match p:
+  Point:
+    ...
+```
+
+### 2. Escopo e Shadowing
+
+O `open` pode não sombrear variáveis existentes no escopo atual. É importante estar ciente disso para evitar confusões:
 
 ```bend
 def example():
   x = 5
   p = Point { x: 10, y: 20 }
   open Point: p
-  # Aqui, 'x' se refere ao campo de 'p', não à variável original
-  return x  # Retorna 10, não 5
-```
-
-### 2. Uso com Tipos Complexos
-
-Para tipos mais complexos, o `open statement` pode simplificar significativamente o código:
-
-```bend
-object ComplexData { 
-  id, 
-  metadata: { 
-    created_at, 
-    updated_at 
-  }, 
-  content 
-}
-
-def process_data(data):
-  open ComplexData: data
-  open metadata: metadata
-  # Agora temos acesso direto a id, created_at, updated_at, e content
-  ...
+  # Aqui, 'x' se refere à variável original, não ao campo de 'p' 
+  return x  # Retorna 5, não 10
 ```
 
 ### 3. Performance
 
-Em termos de performance, o `open statement` é geralmente uma operação de baixo custo, pois não cria cópias profundas dos dados, apenas referências locais.
+Em termos de performance, o `open` é geralmente uma operação de baixo custo, pois não cria cópias profundas dos dados, apenas referências locais.
 
 ## Melhores Práticas
 
@@ -129,4 +141,4 @@ Em termos de performance, o `open statement` é geralmente uma operação de bai
 
 ## Conclusão
 
-Os `open statements` em Bend oferecem uma maneira elegante e eficiente de trabalhar com campos de objetos. Eles melhoram a legibilidade e a manutenibilidade do código, especialmente ao lidar com estruturas de dados complexas. Ao usar essa feature com sabedoria, os desenvolvedores podem escrever código mais conciso e expressivo, mantendo a clareza e a intenção do programa.
+Os `open` em Bend oferecem uma maneira elegante e eficiente de trabalhar com campos de objetos. Eles melhoram a legibilidade e a manutenibilidade do código, especialmente ao lidar com estruturas de dados complexas. Ao usar essa feature com sabedoria, os desenvolvedores podem escrever código mais conciso e expressivo, mantendo a clareza e a intenção do programa.
