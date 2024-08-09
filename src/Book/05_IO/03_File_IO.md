@@ -98,6 +98,30 @@ As operações de leitura e escrita em Bend são geralmente bufferizadas para me
 
 Ao trabalhar com arquivos em ambientes concorrentes, é importante considerar questões de sincronização para evitar condições de corrida e corrupção de dados.
 
+## Operações de Arquivo
+
+Bend fornece um conjunto de funções para manipulação de arquivos, incluindo:
+
+- `IO/FS/open`: Abre um arquivo
+- `IO/FS/close`: Fecha um arquivo
+- `IO/FS/read`: Lê bytes de um arquivo
+- `IO/FS/write`: Escreve bytes em um arquivo
+- `IO/FS/seek`: Move o ponteiro de leitura/escrita em um arquivo
+
+### Exemplo: Escrita em Arquivo
+
+```bend
+def write_to_file():
+  with IO:
+    fp <- IO/FS/open("testing.txt", "w")
+    input <- read_input()
+    * <- IO/FS/write(fp, String/encode_utf8(input))
+    * <- IO/FS/write(fp, String/encode_utf8("\n"))
+    return IO/FS/close(fp)
+```
+
+Este exemplo demonstra como abrir um arquivo, escrever dados nele e fechá-lo corretamente.
+
 ## Padrões de Uso e Melhores Práticas
 
 ### Leitura Segura de Arquivos

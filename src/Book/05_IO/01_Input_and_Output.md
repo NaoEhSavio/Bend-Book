@@ -40,30 +40,6 @@ def IO/input():
 
 Esta implementação lê bytes um por um até encontrar um caractere de nova linha, acumulando-os e depois decodificando-os como UTF-8.
 
-## Operações de Arquivo
-
-Bend fornece um conjunto de funções para manipulação de arquivos, incluindo:
-
-- `IO/FS/open`: Abre um arquivo
-- `IO/FS/close`: Fecha um arquivo
-- `IO/FS/read`: Lê bytes de um arquivo
-- `IO/FS/write`: Escreve bytes em um arquivo
-- `IO/FS/seek`: Move o ponteiro de leitura/escrita em um arquivo
-
-### Exemplo: Escrita em Arquivo
-
-```bend
-def write_to_file():
-  with IO:
-    fp <- IO/FS/open("testing.txt", "w")
-    input <- read_input()
-    * <- IO/FS/write(fp, String/encode_utf8(input))
-    * <- IO/FS/write(fp, String/encode_utf8("\n"))
-    return IO/FS/close(fp)
-```
-
-Este exemplo demonstra como abrir um arquivo, escrever dados nele e fechá-lo corretamente.
-
 ## Gerenciamento de Recursos
 
 Em Bend, é importante gerenciar recursos como descritores de arquivo corretamente. O uso do padrão `with IO:` ajuda a garantir que as operações de I/O sejam realizadas de forma segura e que os recursos sejam liberados adequadamente.

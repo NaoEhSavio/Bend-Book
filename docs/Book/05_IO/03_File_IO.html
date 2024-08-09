@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>File_IO</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Introduction</a></li><li class="chapter-item expanded "><a href="../../Guide/Start.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Guide/About.html"><strong aria-hidden="true">1.1.</strong> About bend</a></li><li class="chapter-item expanded "><a href="../../Guide/Terminal.html"><strong aria-hidden="true">1.2.</strong> Terminal</a></li><li class="chapter-item expanded "><a href="../../Guide/Instalation.html"><strong aria-hidden="true">1.3.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../../Guide/IDE.html"><strong aria-hidden="true">1.4.</strong> IDE</a></li><li class="chapter-item expanded "><a href="../../Guide/HelloWord.html"><strong aria-hidden="true">1.5.</strong> Hello World!</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">1.6.</strong> BPM</div></li></ol></li><li class="chapter-item expanded "><a href="../../Learn.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Logic in Bend</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/01_Logic/01_comments.html"><strong aria-hidden="true">3.1.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../../Book/01_Logic/02_numbers.html"><strong aria-hidden="true">3.2.</strong> Numbers</a></li><li class="chapter-item expanded "><a href="../../Book/01_Logic/03_variables.html"><strong aria-hidden="true">3.3.</strong> Variables</a></li><li class="chapter-item expanded "><a href="../../Book/01_Logic/04_tail_recursion.html"><strong aria-hidden="true">3.4.</strong> Recursion</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Data Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/01_type.html"><strong aria-hidden="true">4.1.</strong> type</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/02_object.html"><strong aria-hidden="true">4.2.</strong> object</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/03_tuple.html"><strong aria-hidden="true">4.3.</strong> tuple</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/04_list.html"><strong aria-hidden="true">4.4.</strong> list</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/05_map.html"><strong aria-hidden="true">4.5.</strong> map</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/06_tree.html"><strong aria-hidden="true">4.6.</strong> tree</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/07_matrix.html"><strong aria-hidden="true">4.7.</strong> matrix</a></li><li class="chapter-item expanded "><a href="../../Book/02_Data_Structures/08_graph.html"><strong aria-hidden="true">4.8.</strong> graph</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Function Structures</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/03_Function_Structures/01_functions.html"><strong aria-hidden="true">5.1.</strong> functions</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Patterns and Matching</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/01_if.html"><strong aria-hidden="true">6.1.</strong> if</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/02_switch.html"><strong aria-hidden="true">6.2.</strong> switch</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/03_match.html"><strong aria-hidden="true">6.3.</strong> match</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/04_fold.html"><strong aria-hidden="true">6.4.</strong> fold</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/05_bend.html"><strong aria-hidden="true">6.5.</strong> bend</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/06_open.html"><strong aria-hidden="true">6.6.</strong> open</a></li><li class="chapter-item expanded "><a href="../../Book/04_Patterns_and_Matching/07_with.html"><strong aria-hidden="true">6.7.</strong> with block</a></li></ol></li><li class="chapter-item expanded "><a href="../../Book/05_IO/00_IO.html"><strong aria-hidden="true">7.</strong> IO</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/05_IO/01_Input_and_Output.html"><strong aria-hidden="true">7.1.</strong> Input_and_Output</a></li><li class="chapter-item expanded "><a href="../../Book/05_IO/02_Time_and_sleep.html"><strong aria-hidden="true">7.2.</strong> Time_and_sleep</a></li><li class="chapter-item expanded "><a href="../../Book/05_IO/03_File_IO.html" class="active"><strong aria-hidden="true">7.3.</strong> File_IO</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Language Features</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/06_Functional_Language_Features/01_haskell/01_syntax.html"><strong aria-hidden="true">8.1.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="../../Book/06_Functional_Language_Features/02_lambda/01_lambda.html"><strong aria-hidden="true">8.2.</strong> Lambda</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../Book/06_Functional_Language_Features/02_lambda/02_scopeless_lambdas.html"><strong aria-hidden="true">8.2.1.</strong> scopeless lambdas</a></li></ol></li><li class="chapter-item expanded "><a href="../../Book/06_Functional_Language_Features/03_Sup_and_dups/01_sup_and_dups.html"><strong aria-hidden="true">8.3.</strong> Dups and Sups</a></li></ol></li><li class="chapter-item expanded "><a href="../../Book/07_Concurrency/parallel.html"><strong aria-hidden="true">9.</strong> Concurrency</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><div>Contributors</div></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="operações-com-arquivos-em-bend"><a class="header" href="#operações-com-arquivos-em-bend">Operações com Arquivos em Bend</a></h1>
+<h2 id="introdução"><a class="header" href="#introdução">Introdução</a></h2>
+<p>As operações com arquivos são uma parte fundamental da programação, permitindo a persistência de dados e a comunicação entre diferentes partes de um sistema. Em Bend, essas operações são tratadas de forma segura e funcional, mantendo a integridade do sistema de tipos e o controle sobre efeitos colaterais.</p>
+<h2 id="conceitos-fundamentais"><a class="header" href="#conceitos-fundamentais">Conceitos Fundamentais</a></h2>
+<h3 id="descritores-de-arquivo"><a class="header" href="#descritores-de-arquivo">Descritores de Arquivo</a></h3>
+<p>Em Bend, os arquivos são manipulados através de descritores de arquivo, que são identificadores únicos representados como valores <code>U24</code>. Estes descritores são abstrações que permitem o acesso controlado aos recursos do sistema de arquivos.</p>
+<h3 id="modos-de-abertura-de-arquivo"><a class="header" href="#modos-de-abertura-de-arquivo">Modos de Abertura de Arquivo</a></h3>
+<p>Bend suporta vários modos de abertura de arquivo, cada um com um propósito específico:</p>
+<ul>
+<li><code>"r"</code>: Leitura</li>
+<li><code>"w"</code>: Escrita (sobrescreve o conteúdo existente)</li>
+<li><code>"a"</code>: Append (adiciona ao final do arquivo)</li>
+<li><code>"r+"</code>: Leitura e escrita</li>
+<li><code>"w+"</code>: Leitura e escrita (sobrescreve o conteúdo existente)</li>
+<li><code>"a+"</code>: Leitura e append</li>
+</ul>
+<h3 id="streams-padrão"><a class="header" href="#streams-padrão">Streams Padrão</a></h3>
+<p>Bend fornece acesso aos streams padrão do sistema operacional:</p>
+<ul>
+<li><code>IO/FS/STDIN (0)</code>: Entrada padrão</li>
+<li><code>IO/FS/STDOUT (1)</code>: Saída padrão</li>
+<li><code>IO/FS/STDERR (2)</code>: Erro padrão</li>
+</ul>
+<h2 id="operações-principais"><a class="header" href="#operações-principais">Operações Principais</a></h2>
+<h3 id="abertura-e-fechamento-de-arquivos"><a class="header" href="#abertura-e-fechamento-de-arquivos">Abertura e Fechamento de Arquivos</a></h3>
+<pre><code class="language-bend">def IO/FS/open(path, mode):
+    # Implementação interna
+
+def IO/FS/close(file):
+    # Implementação interna
+</code></pre>
+<p>Estas funções são cruciais para gerenciar recursos do sistema de arquivos. É importante sempre fechar os arquivos após o uso para evitar vazamentos de recursos.</p>
+<h3 id="leitura-de-arquivos"><a class="header" href="#leitura-de-arquivos">Leitura de Arquivos</a></h3>
+<p>Bend oferece várias funções para leitura de arquivos:</p>
+<pre><code class="language-bend">def IO/FS/read(file, num_bytes):
+    # Implementação interna
+
+def IO/FS/read_line(file):
+    # Implementação interna
+
+def IO/FS/read_until_end(file):
+    # Implementação interna
+
+def IO/FS/read_file(path):
+    # Implementação interna
+</code></pre>
+<p>Estas funções permitem diferentes estratégias de leitura, desde ler um número específico de bytes até ler o arquivo inteiro.</p>
+<h3 id="escrita-em-arquivos"><a class="header" href="#escrita-em-arquivos">Escrita em Arquivos</a></h3>
+<pre><code class="language-bend">def IO/FS/write(file, bytes):
+    # Implementação interna
+
+def IO/FS/write_file(path, bytes):
+    # Implementação interna
+</code></pre>
+<p>Estas funções permitem escrever dados em arquivos, seja em um arquivo já aberto ou criando um novo arquivo.</p>
+<h3 id="posicionamento-no-arquivo"><a class="header" href="#posicionamento-no-arquivo">Posicionamento no Arquivo</a></h3>
+<pre><code class="language-bend">def IO/FS/seek(file, offset, mode):
+    # Implementação interna
+</code></pre>
+<p>A função <code>seek</code> permite mover o ponteiro de leitura/escrita dentro do arquivo, facilitando operações em posições específicas.</p>
+<h2 id="considerações-teóricas"><a class="header" href="#considerações-teóricas">Considerações Teóricas</a></h2>
+<h3 id="efeitos-colaterais-e-pureza-funcional"><a class="header" href="#efeitos-colaterais-e-pureza-funcional">Efeitos Colaterais e Pureza Funcional</a></h3>
+<p>Operações de arquivo são inerentemente impuras, pois modificam o estado do sistema. Bend lida com isso encapsulando essas operações no tipo <code>IO</code>, mantendo a pureza funcional do restante do código.</p>
+<h3 id="buffering-e-performance"><a class="header" href="#buffering-e-performance">Buffering e Performance</a></h3>
+<p>As operações de leitura e escrita em Bend são geralmente bufferizadas para melhorar a performance. Isso significa que as operações podem não ser imediatamente refletidas no sistema de arquivos.</p>
+<h3 id="concorrência-e-acesso-a-arquivos"><a class="header" href="#concorrência-e-acesso-a-arquivos">Concorrência e Acesso a Arquivos</a></h3>
+<p>Ao trabalhar com arquivos em ambientes concorrentes, é importante considerar questões de sincronização para evitar condições de corrida e corrupção de dados.</p>
+<h2 id="padrões-de-uso-e-melhores-práticas"><a class="header" href="#padrões-de-uso-e-melhores-práticas">Padrões de Uso e Melhores Práticas</a></h2>
+<h3 id="leitura-segura-de-arquivos"><a class="header" href="#leitura-segura-de-arquivos">Leitura Segura de Arquivos</a></h3>
+<pre><code class="language-bend">def safe_read_file(path):
+  with IO:
+    result &lt;- IO/try(lambda: IO/FS/read_file(path))
+    match result:
+      case Result/Ok:
+        return IO/wrap(result.val)
+      case Result/Err:
+        * &lt;- IO/print("Erro ao ler o arquivo: " + result.err + "\n")
+        return IO/wrap([])
+</code></pre>
+<p>Este padrão demonstra como lidar com possíveis erros ao ler arquivos.</p>
+<h3 id="escrita-atômica"><a class="header" href="#escrita-atômica">Escrita Atômica</a></h3>
+<pre><code class="language-bend">def atomic_write(path, content):
+  with IO:
+    temp_path = path + ".tmp"
+    * &lt;- IO/FS/write_file(temp_path, content)
+    * &lt;- IO/FS/rename(temp_path, path)
+    return IO/wrap(())
+</code></pre>
+<p>Este padrão garante que a escrita em um arquivo seja atômica, evitando estados intermediários inconsistentes.</p>
+<h3 id="processamento-de-arquivos-grandes"><a class="header" href="#processamento-de-arquivos-grandes">Processamento de Arquivos Grandes</a></h3>
+<pre><code class="language-bend">def process_large_file(path, process_chunk):
+  with IO:
+    fd &lt;- IO/FS/open(path, "r")
+    * &lt;- process_chunks(fd, process_chunk)
+    * &lt;- IO/FS/close(fd)
+    return IO/wrap(())
+
+def process_chunks(fd, process_chunk):
+  with IO:
+    chunk &lt;- IO/FS/read(fd, 1024)
+    match chunk:
+      case List/Nil:
+        return IO/wrap(())
+      case List/Cons:
+        * &lt;- process_chunk(chunk)
+        return process_chunks(fd, process_chunk)
+</code></pre>
+<p>Este padrão demonstra como processar arquivos grandes em chunks, evitando carregar todo o conteúdo na memória.</p>
+<h2 id="considerações-avançadas"><a class="header" href="#considerações-avançadas">Considerações Avançadas</a></h2>
+<h3 id="tratamento-de-erros"><a class="header" href="#tratamento-de-erros">Tratamento de Erros</a></h3>
+<p>É crucial implementar tratamento de erros robusto ao trabalhar com arquivos, considerando cenários como arquivos não encontrados, permissões insuficientes, e erros de I/O.</p>
+<h3 id="portabilidade"><a class="header" href="#portabilidade">Portabilidade</a></h3>
+<p>Ao escrever código que manipula arquivos, considere as diferenças entre sistemas operacionais, como separadores de caminho e codificações de caracteres.</p>
+<h3 id="segurança"><a class="header" href="#segurança">Segurança</a></h3>
+<p>Sempre valide e sanitize caminhos de arquivo e conteúdos para prevenir vulnerabilidades de segurança, como injeção de caminho.</p>
+<h2 id="conclusão"><a class="header" href="#conclusão">Conclusão</a></h2>
+<p>As operações com arquivos em Bend oferecem um conjunto poderoso e flexível de ferramentas para manipulação de dados persistentes. Ao compreender os conceitos subjacentes e seguir as melhores práticas, os desenvolvedores podem criar aplicações robustas e eficientes que interagem de forma segura com o sistema de arquivos.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../Book/05_IO/02_Time_and_sleep.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../Book/06_Functional_Language_Features/01_haskell/01_syntax.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../Book/05_IO/02_Time_and_sleep.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../Book/06_Functional_Language_Features/01_haskell/01_syntax.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
