@@ -361,4 +361,60 @@ todo
 
 ## IO
 
-TODO
+Bend handles input and output (I/O) operations in a declarative and functional manner, using the `IO` type to encapsulate these operations. The `IO` type has two main variants:
+
+- **IO/Done**: Represents an I/O operation that has been successfully completed.
+- **IO/Call**: Represents a pending I/O call, including the function to be called, its arguments, and a continuation to process the result.
+
+### Definition
+
+The `IO` type is defined as follows:
+
+```py
+type IO:
+  Done { magic, expr }
+  Call { magic, func, argm, cont }
+```
+
+- `magic`: A special value used to verify the validity of the operation.
+- `expr`: The result of the operation.
+- `func`: The function to be called for the I/O operation.
+- `argm`: The arguments for the function.
+- `cont`: A continuation, which is a function that will be called with the result of the operation.
+
+### Basic IO Functions
+
+- **IO/MAGIC**: Returns magic values used to ensure the validity of I/O operations.
+
+  ```py
+  def IO/MAGIC:
+    return (0xD0CA11, 0xFF1FF1)
+  ```
+
+- **IO/wrap**: Encapsulates a value in an `IO/Done`, indicating that the operation has been successfully completed.
+
+  ```py
+  def IO/wrap(x):
+    return IO/Done(IO/MAGIC, x)
+  ```
+
+- **IO/bind**: Combines two I/O operations, executing the second operation after the first one completes.
+
+  ```py
+  def IO/bind(a, b):
+    match a:
+      case IO/Done:
+        b = undefer(b)
+        return b(a.expr)
+      case IO/Call:
+        return IO/Call(IO/MAGIC, a.func, a.argm, lambda x: IO/bind(a.cont(x), b))
+  ```
+
+- **call**: Creates a pending I/O operation.
+
+  ```py
+  def call(func, argm):
+    return IO/Call(IO/MAGIC, func, argm, lambda x: IO/Done(IO/MAGIC, x))
+  ```
+
+These functions form the foundation for handling input and output operations in Bend, allowing you to compose operations safely and efficiently, with built-in validity checks.
